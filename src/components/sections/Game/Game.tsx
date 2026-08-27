@@ -8,7 +8,7 @@ export function Game() {
       <div className={`container ${styles.game__inner}`}>
         <div className={styles.game__media}>
           <img
-            src="/images/game-photo.png"
+            src="/images/game-photo.jpg"
             alt="Авторська психологічна гра «Віра в себе»"
             width={560}
             height={420}
