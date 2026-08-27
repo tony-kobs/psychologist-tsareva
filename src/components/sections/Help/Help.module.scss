@@ -1,0 +1,120 @@
+@use "../../../styles/mixins" as *;
+
+.help {
+  &__inner {
+    display: grid;
+    gap: 40px;
+
+    @include tablet-lg {
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+  }
+
+  &__title {
+    @include heading-h2;
+    margin-bottom: 20px;
+    text-align: left;
+
+    @include desktop {
+      text-align: center;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 3vw, 16px);
+    @include body-large;
+    min-width: 0;
+  }
+
+  &__check {
+    flex-shrink: 0;
+    width: clamp(32px, 10vw, 40px);
+    height: clamp(32px, 10vw, 40px);
+    max-width: none;
+  }
+
+  &__cta {
+    width: 100%;
+    max-width: 100%;
+
+    @include desktop {
+      width: 487px;
+      max-width: 487px;
+      min-height: 69px;
+      font-size: 32px;
+      padding: 16px 36px;
+    }
+  }
+
+  &__directions {
+    .help__title {
+      text-align: center;
+    }
+  }
+
+  &__cards {
+    display: grid;
+    gap: 16px;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+  }
+
+  &__card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border-radius: var(--radius);
+    background-color: var(--card-bg-tertiary);
+    border: 1px solid var(--input-border);
+    transition: background-color var(--transition);
+
+    &:hover {
+      background-color: var(--card-bg-hover);
+    }
+
+    h3 {
+      @include heading-h4;
+      margin-bottom: 8px;
+    }
+
+    p {
+      @include body-regular;
+    }
+  }
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: var(--card-bg-hover);
+    box-shadow:
+      inset -1px 0 2px rgba(98, 28, 4, 0.35),
+      inset 2px 2px 4px rgba(98, 28, 4, 0.25);
+
+    img {
+      width: 36px;
+      height: 36px;
+      max-width: none;
+      object-fit: contain;
+    }
+  }
+}

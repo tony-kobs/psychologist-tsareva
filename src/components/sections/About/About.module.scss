@@ -1,0 +1,98 @@
+@use "../../../styles/mixins" as *;
+
+.about {
+  position: relative;
+  overflow: hidden;
+
+  /* Figma Group: x1193/1440 ≈ 82.8%, y153/497 ≈ 30.8%, 419×588 */
+  &::after {
+    content: "";
+    position: absolute;
+    left: 82.85%;
+    top: 30.8%;
+    width: 419px;
+    height: 588px;
+    background: url("/images/decor-about-leaf.svg") no-repeat left top / contain;
+    opacity: 0.75;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @media (max-width: 1023px) {
+    /* Figma mobile Group: x238/393 ≈ 60.6%, y641/1011 ≈ 63.4%, 297×551 */
+    &::after {
+      left: 60.6%;
+      top: 63.4%;
+      width: min(297px, 76vw);
+      height: min(551px, 55%);
+      opacity: 0.6;
+    }
+  }
+
+  &__wrap {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  &__inner {
+    display: grid;
+    gap: 32px;
+
+    @include tablet-lg {
+      grid-template-columns: 392px 1fr;
+      gap: 60px;
+      align-items: stretch;
+    }
+  }
+
+  &__media {
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: var(--radius);
+
+    @include tablet-lg {
+      height: 402px;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: space-between;
+  }
+
+  &__title {
+    @include section-title;
+  }
+
+  &__heading {
+    @include heading-h2;
+  }
+
+  &__text {
+    @include heading-h3;
+  }
+
+  &__cta {
+    align-self: stretch;
+    margin-top: 8px;
+    width: 100%;
+    min-height: clamp(52px, 14vw, 69px);
+    font-size: clamp(18px, 5.5vw, 24px);
+
+    @include desktop {
+      font-size: 32px;
+    }
+  }
+}

@@ -1,0 +1,274 @@
+@use "../../../styles/mixins" as *;
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: var(--hero-height-m);
+  overflow: hidden;
+  background-color: var(--bg-light);
+  isolation: isolate;
+
+  @include tablet {
+    height: fluid(700px, 772px, $bp-tablet, $bp-desktop);
+  }
+
+  @include desktop {
+    height: var(--hero-height-d);
+  }
+
+  &__media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+
+    @include tablet {
+      object-position: 70% top;
+    }
+
+    @include desktop {
+      object-position: right top;
+    }
+  }
+
+  &__overlay {
+    display: none;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    object-position: left top;
+    pointer-events: none;
+    z-index: 1;
+
+    @include tablet {
+      display: block;
+      opacity: 0.9;
+    }
+
+    @include desktop {
+      opacity: 1;
+    }
+  }
+
+  &__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(254, 251, 247, 0) 0%,
+      rgba(254, 251, 247, 0) 42%,
+      rgba(254, 251, 247, 0.35) 62%,
+      rgba(254, 251, 247, 0.75) 82%,
+      rgba(254, 251, 247, 0.95) 100%
+    );
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__leaf {
+    position: absolute;
+    right: -35%;
+    bottom: 1%;
+    width: min(256px, 70vw);
+    height: min(242px, 38%);
+    background: url("/images/background-hero.png") no-repeat right bottom / contain;
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: multiply;
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-block: fluid(24px, 48px, $bp-mobile-min, $bp-tablet);
+    min-width: 0;
+
+    @include tablet {
+      padding-block: fluid(48px, 72px, $bp-tablet, $bp-desktop);
+    }
+
+    @include desktop {
+      padding-block: 84px;
+    }
+  }
+
+  &__tags {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: fluid(12px, 20px, $bp-mobile-min, $bp-tablet);
+
+    @include tablet {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: fluid(20px, 40px, $bp-tablet, $bp-desktop);
+    }
+  }
+
+  &__tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fluid(120px, 160px, $bp-mobile-min, $bp-tablet);
+    min-height: fluid(34px, 48px, $bp-mobile-min, $bp-tablet);
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #e8a48a 0%, #c8765b 100%);
+    color: var(--text-button);
+    font-family: var(--font-heading);
+    font-size: fluid(14px, 17px, $bp-mobile-min, $bp-tablet);
+    font-weight: 400;
+    line-height: 1;
+    white-space: nowrap;
+
+    @include desktop {
+      width: 180px;
+      min-height: 53px;
+      font-size: 18px;
+      padding: 12px 28px;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: fluid(16px, 40px, $bp-mobile-min, $bp-tablet);
+    width: 100%;
+    max-width: min(520px, 100%);
+    min-width: 0;
+
+    @include tablet {
+      max-width: min(640px, 100%);
+      gap: fluid(40px, 72px, $bp-tablet, $bp-desktop);
+    }
+
+    @include desktop {
+      max-width: 700px;
+      gap: 80px;
+    }
+  }
+
+  &__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: fluid(12px, 24px, $bp-mobile-min, $bp-tablet);
+    width: 100%;
+    min-width: 0;
+
+    @include tablet {
+      gap: fluid(24px, 40px, $bp-tablet, $bp-desktop);
+      max-width: min(520px, 100%);
+    }
+
+    @include desktop {
+      gap: 40px;
+      max-width: 529px;
+    }
+  }
+
+  &__title {
+    @include heading-h1;
+    max-width: 100%;
+    letter-spacing: 0.04em;
+
+    @include desktop {
+      font-size: 48px;
+      letter-spacing: 0.08em;
+      max-width: 529px;
+    }
+  }
+
+  &__subtitle {
+    @include body-regular;
+    color: var(--text-accent-dark);
+    max-width: min(280px, 100%);
+
+    @include tablet {
+      max-width: min(360px, 100%);
+      font-family: var(--font-body);
+      font-size: fluid(18px, 22px, $bp-tablet, $bp-desktop);
+      line-height: 1.3;
+    }
+
+    @include desktop {
+      font-size: 24px;
+      max-width: 367px;
+    }
+  }
+
+  &__cta {
+    width: 100%;
+    max-width: min(280px, 100%);
+    min-width: 0;
+    min-height: fluid(42px, 56px, $bp-mobile-min, $bp-tablet);
+    padding: 10px 20px;
+    font-family: var(--font-heading);
+    font-size: var(--fs-btn);
+    font-weight: 700;
+
+    @include tablet {
+      width: auto;
+      max-width: min(420px, 100%);
+      min-height: fluid(56px, 69px, $bp-tablet, $bp-desktop);
+      font-size: fluid(20px, 28px, $bp-tablet, $bp-desktop);
+      padding: fluid(12px, 16px, $bp-tablet, $bp-desktop) fluid(24px, 36px, $bp-tablet, $bp-desktop);
+    }
+
+    @include desktop {
+      max-width: none;
+      min-height: 69px;
+      min-width: min(487px, 100%);
+      font-size: 32px;
+      padding: 16px 36px;
+    }
+  }
+
+  &__ctaFull {
+    display: none;
+
+    @include tablet {
+      display: inline;
+    }
+  }
+
+  &__ctaShort {
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__socials {
+    width: 100%;
+    max-width: 100%;
+    justify-content: flex-start;
+    gap: fluid(24px, 40px, $bp-mobile-min, $bp-tablet);
+
+    @include desktop {
+      gap: 40px;
+    }
+  }
+}

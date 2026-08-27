@@ -1,0 +1,82 @@
+@use "../../../styles/mixins" as *;
+
+.groups {
+  &__title {
+    @include section-title;
+    text-align: center;
+    margin-bottom: 28px;
+
+    @include tablet {
+      margin-bottom: 36px;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    gap: 16px;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    @include desktop {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    padding: 28px 20px 24px;
+    background-color: #ffffff;
+    border: 1px solid rgba(206, 128, 102, 0.35);
+    border-radius: var(--radius);
+    transition:
+      background-color var(--transition),
+      box-shadow var(--transition);
+
+    &:hover {
+      background-color: var(--card-bg-hover);
+      box-shadow: 0 10px 28px rgba(201, 120, 94, 0.1);
+    }
+
+    h3 {
+      @include heading-h4;
+    }
+
+    p {
+      flex-grow: 1;
+      @include body-regular;
+      color: var(--text-secondary);
+    }
+  }
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(72px, 22vw, 100px);
+    height: clamp(72px, 22vw, 100px);
+    margin-bottom: 4px;
+    flex-shrink: 0;
+
+    img {
+      width: clamp(52px, 18vw, 72px);
+      height: clamp(52px, 18vw, 72px);
+      max-width: none;
+      object-fit: contain;
+    }
+  }
+
+  &__btn {
+    margin-top: 8px;
+    min-width: 0;
+    width: 100%;
+    max-width: 220px;
+  }
+}

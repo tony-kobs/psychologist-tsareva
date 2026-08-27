@@ -1,0 +1,92 @@
+@use "../../../styles/mixins" as *;
+
+.game {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--form-bg);
+  background-image: var(--gradient-section);
+
+  /* Figma inset ≈ top 17%, left -4.65%, width ~19% */
+  &::before {
+    content: "";
+    position: absolute;
+    left: -4.65%;
+    top: 17.17%;
+    width: min(280px, 19.15%);
+    height: 83%;
+    background: url("/images/background-game.png") no-repeat left top / contain;
+    mix-blend-mode: multiply;
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @media (max-width: 1023px) {
+    /* Mobile Group: x≈-16 y≈100, 242×288 */
+    &::before {
+      left: -16px;
+      top: 100px;
+      width: min(242px, 62vw);
+      height: min(288px, 28%);
+      opacity: 0.45;
+    }
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 28px;
+
+    @include tablet-lg {
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 48px;
+      align-items: center;
+    }
+  }
+
+  &__media {
+    border-radius: var(--radius);
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: var(--radius);
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__title {
+    @include section-title;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__subtitle {
+    display: block;
+    @include heading-h2;
+  }
+
+  &__text {
+    @include body-regular;
+    color: var(--text-secondary);
+  }
+
+  &__cta {
+    align-self: stretch;
+    margin-top: 8px;
+
+    @include desktop {
+      min-height: 69px;
+      font-size: 32px;
+    }
+  }
+}

@@ -1,0 +1,62 @@
+@use "../../../styles/mixins" as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: fluid(42px, 52px, $bp-mobile-min, $bp-desktop);
+  max-width: 100%;
+  padding: 10px fluid(16px, 28px, $bp-mobile-min, $bp-tablet);
+  border-radius: var(--radius);
+  font-family: var(--font-heading);
+  font-size: var(--fs-btn);
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    border-color var(--transition),
+    transform var(--transition);
+  white-space: normal;
+
+  @include tablet {
+    white-space: nowrap;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--text-accent-dark);
+    outline-offset: 2px;
+  }
+
+  &--primary {
+    background-color: var(--button-primary);
+    color: var(--text-button);
+    border: 2px solid var(--button-primary);
+
+    &:hover {
+      background-color: var(--text-accent-dark);
+      border-color: var(--text-accent-dark);
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
+  &--secondary {
+    background-color: #ffffff;
+    color: var(--button-secondary-border);
+    border: 2px solid var(--button-secondary-border);
+
+    &:hover {
+      background-color: var(--card-bg-hover);
+      color: var(--text-accent-dark);
+      border-color: var(--text-accent-dark);
+    }
+  }
+
+  &--full {
+    width: 100%;
+  }
+}

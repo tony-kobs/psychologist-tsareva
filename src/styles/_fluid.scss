@@ -1,0 +1,20 @@
+@use "sass:math";
+
+/// Fluid size between two viewport widths (inclusive clamp).
+/// Example: fluid(16px, 64px, 320px, 768px)
+@function fluid($from, $to, $min-vw, $max-vw) {
+  $from-n: math.div($from, 1px);
+  $to-n: math.div($to, 1px);
+  $min-n: math.div($min-vw, 1px);
+  $max-n: math.div($max-vw, 1px);
+  $lo: math.min($from-n, $to-n);
+  $hi: math.max($from-n, $to-n);
+  $delta: $to-n - $from-n;
+  $span: $max-n - $min-n;
+
+  @return clamp(
+    #{$lo}px,
+    calc(#{$from-n}px + #{$delta} * ((100vw - #{$min-n}px) / #{$span})),
+    #{$hi}px
+  );
+}

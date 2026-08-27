@@ -1,0 +1,99 @@
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  color: #ffffff;
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--icon-social);
+    height: var(--icon-social);
+    flex-shrink: 0;
+    color: inherit;
+    transition:
+      transform var(--transition),
+      opacity var(--transition);
+
+    &:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+  }
+
+  &__icon {
+    display: block;
+    width: var(--icon-social-glyph);
+    height: var(--icon-social-glyph);
+    flex-shrink: 0;
+  }
+
+  &--brand {
+    gap: clamp(24px, 6vw, 40px);
+
+    .socials__icon {
+      width: var(--icon-social);
+      height: var(--icon-social);
+    }
+  }
+
+  &--mono {
+    gap: 16px;
+
+    .socials__link {
+      border: 1px solid var(--input-border);
+      background: #ffffff;
+      border-radius: 50%;
+    }
+
+    .socials__icon {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  &--topbar {
+    gap: 32px;
+    color: #ffffff;
+
+    .socials__link {
+      width: 32px;
+      height: 32px;
+
+      &:hover {
+        transform: none;
+        opacity: 0.8;
+      }
+    }
+
+    .socials__icon {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  /* Footer socials: 40px icons, packed gap (Figma column space-between looked too sparse) */
+  &--light {
+    gap: 24px;
+    width: max-content;
+    max-width: 100%;
+    justify-content: flex-start;
+    color: #ffffff;
+
+    .socials__link {
+      width: 40px;
+      height: 40px;
+
+      &:hover {
+        transform: none;
+        opacity: 0.85;
+      }
+    }
+
+    .socials__icon {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}

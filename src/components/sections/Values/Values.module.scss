@@ -1,0 +1,80 @@
+@use "../../../styles/mixins" as *;
+
+.values {
+  padding-block: fluid(28px, 56px, $bp-mobile-min, $bp-tablet);
+
+  @include desktop {
+    padding-block: fluid(56px, 80px, $bp-desktop, $bp-desktop-max) fluid(32px, 48px, $bp-desktop, $bp-desktop-max);
+  }
+
+  &__grid {
+    display: grid;
+    gap: fluid(10px, 24px, $bp-mobile-min, $bp-tablet);
+    grid-template-columns: 1fr 1fr;
+
+    @include desktop {
+      grid-template-columns: repeat(4, 1fr);
+      gap: fluid(32px, 48px, $bp-desktop, $bp-desktop-max);
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: fluid(12px, 24px, $bp-mobile-min, $bp-tablet);
+    padding: fluid(14px, 24px, $bp-mobile-min, $bp-tablet) 4px;
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius);
+    background-color: transparent;
+    text-align: center;
+    min-height: 100%;
+    min-width: 0;
+    transition: background-color var(--transition);
+
+    @include desktop {
+      padding: fluid(24px, 28px, $bp-desktop, $bp-desktop-max);
+    }
+
+    &:hover {
+      background-color: var(--card-bg-hover);
+    }
+  }
+
+  &__iconWrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--icon-values);
+    height: var(--icon-values);
+    border-radius: 50%;
+    background-color: var(--card-bg-hover);
+    flex-shrink: 0;
+
+    img {
+      width: var(--icon-values-glyph);
+      height: var(--icon-values-glyph);
+      max-width: none;
+      object-fit: contain;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  &__title {
+    @include heading-h4;
+  }
+
+  &__text {
+    @include body-regular;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+}

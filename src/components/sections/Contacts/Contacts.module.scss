@@ -1,0 +1,184 @@
+@use "../../../styles/mixins" as *;
+
+.contacts {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--form-bg);
+  background-image: var(--gradient-section);
+
+  /* Figma Clip: x≈32 y≈64, 420×704 within 1440×495 */
+  &::before {
+    content: "";
+    position: absolute;
+    left: 32px;
+    top: 64px;
+    width: 420px;
+    height: 704px;
+    background: url("/images/decor-form-leaf.svg") no-repeat left top / contain;
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @media (max-width: 1023px) {
+    /* Figma mobile Clip: x≈19 y≈-42, 292×441 */
+    &::before {
+      left: 19px;
+      top: -42px;
+      width: min(292px, 74vw);
+      height: min(441px, 60%);
+      opacity: 0.55;
+    }
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 32px;
+
+    @include tablet-lg {
+      grid-template-columns: 1fr 528px;
+      gap: 80px;
+      align-items: start;
+      padding-block: 40px;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @include desktop {
+      gap: 40px;
+    }
+  }
+
+  &__title {
+    @include section-title;
+  }
+
+  &__text {
+    @include heading-h3;
+    color: var(--text-primary);
+    max-width: 36ch;
+  }
+
+  &__phone {
+    @include heading-h3;
+    color: var(--text-primary);
+
+    &:hover {
+      color: var(--text-accent-dark);
+    }
+  }
+
+  &__socials {
+    width: 100%;
+    max-width: 100%;
+    justify-content: space-between;
+    gap: 0;
+
+    @include desktop {
+      max-width: none;
+      justify-content: flex-start;
+      gap: 40px;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 4vw, 22px);
+    padding: clamp(16px, 4.5vw, 24px);
+    background-color: var(--form-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 20px;
+    min-width: 0;
+    width: 100%;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    label {
+      @include visually-hidden;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    min-height: 48px;
+    padding: 10px;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    background-color: #fdfdfe;
+    color: var(--text-primary);
+    @include body-large;
+    transition: border-color var(--transition), box-shadow var(--transition);
+
+    &::placeholder {
+      color: var(--text-secondary);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--text-accent-light);
+      box-shadow: 0 0 0 3px rgba(201, 120, 94, 0.15);
+    }
+
+    &--error {
+      border-color: #b42318;
+    }
+  }
+
+  &__textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  &__error {
+    font-size: 14px;
+    color: #b42318;
+  }
+
+  &__success {
+    margin: 0;
+    padding: 12px 14px;
+    border-radius: var(--radius);
+    background-color: #f3ebe4;
+    color: var(--text-accent-dark);
+    @include body-regular;
+  }
+
+  &__submit {
+    width: 100%;
+    min-height: 64px;
+    border: none;
+    border-radius: var(--radius);
+    background-color: var(--button-disabled);
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color var(--transition), color var(--transition);
+
+    @include desktop {
+      font-size: 32px;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: var(--button-primary);
+      color: #ffffff;
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: wait;
+    }
+  }
+}

@@ -1,0 +1,201 @@
+@use "../../../styles/mixins" as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--header-height);
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid rgba(206, 128, 102, 0.18);
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    gap: clamp(12px, 4vw, 24px);
+    min-width: 0;
+  }
+
+  &__nav {
+    display: none;
+
+    @include desktop {
+      display: block;
+      flex: 1;
+    }
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+
+    @media (min-width: 1440px) {
+      gap: 28px;
+    }
+  }
+
+  &__link {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    line-height: 1;
+    color: var(--text-primary);
+    transition: color var(--transition);
+    white-space: nowrap;
+
+    &:hover {
+      color: var(--text-accent-light);
+    }
+  }
+}
+
+.burger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(40px, 12vw, 48px);
+  height: clamp(40px, 12vw, 48px);
+  color: var(--text-accent-light);
+  flex-shrink: 0;
+
+  @include desktop {
+    display: none;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* Figma mobile-menu: full-screen panel */
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-primary);
+  transform: translateX(100%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+
+  @include desktop {
+    display: none;
+  }
+
+  &--open {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  &__phone {
+    display: flex;
+    align-items: center;
+    min-height: var(--topbar-height);
+    padding-inline: var(--container-pad);
+    background-color: var(--bg-dark-brown);
+  }
+
+  &__phoneLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: fluid(14px, 18px, $bp-mobile-min, $bp-tablet);
+    line-height: 1;
+    color: #ffffff;
+  }
+
+  &__phoneIcon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: var(--header-height);
+    gap: 16px;
+  }
+
+  &__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(40px, 12vw, 48px);
+    height: clamp(40px, 12vw, 48px);
+    color: var(--text-accent-light);
+    flex-shrink: 0;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__nav {
+    flex: 1;
+    padding-block: 8px 40px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(201, 120, 94, 0.45);
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    min-height: 64px;
+    padding: 18px var(--container-pad);
+    border-bottom: 1px solid rgba(201, 120, 94, 0.45);
+    font-family: var(--font-body);
+    font-size: fluid(18px, 24px, $bp-mobile-min, $bp-tablet);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--text-primary);
+    transition: color var(--transition), background-color var(--transition);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--text-accent-light);
+      background-color: var(--card-bg-hover);
+    }
+
+    &--accent {
+      color: var(--text-accent-light);
+    }
+  }
+
+  &__chevron {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: var(--text-accent-light);
+  }
+}
