@@ -3,96 +3,169 @@
 .about {
   position: relative;
   overflow: hidden;
+  background-color: var(--form-bg);
 
-  /* Figma Group: x1193/1440 ≈ 82.8%, y153/497 ≈ 30.8%, 419×588 */
   &::after {
     content: "";
     position: absolute;
-    left: 82.85%;
-    top: 30.8%;
-    width: 419px;
-    height: 588px;
-    background: url("/images/decor-about-leaf.svg") no-repeat left top / contain;
-    opacity: 0.75;
+    right: 0;
+    bottom: 0;
+    width: min(419px, 45vw);
+    height: min(588px, 70%);
+    background: url("/images/about-background.png") no-repeat right bottom / contain;
+    opacity: 0.85;
     pointer-events: none;
     z-index: 0;
-  }
-
-  @media (max-width: 1023px) {
-    /* Figma mobile Group: x238/393 ≈ 60.6%, y641/1011 ≈ 63.4%, 297×551 */
-    &::after {
-      left: 60.6%;
-      top: 63.4%;
-      width: min(297px, 76vw);
-      height: min(551px, 55%);
-      opacity: 0.6;
-    }
   }
 
   &__wrap {
     position: relative;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+  }
+
+  &__title {
+    margin: 0 0 24px;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.05;
+    color: var(--text-accent-dark);
+
+    @include tablet-lg {
+      margin-bottom: 40px;
+      font-size: 48px;
+      letter-spacing: 0.04em;
+    }
   }
 
   &__inner {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: 32px;
 
     @include tablet-lg {
-      grid-template-columns: 392px 1fr;
+      flex-direction: row;
       gap: 60px;
-      align-items: stretch;
+      align-items: flex-start;
     }
   }
 
   &__media {
-    border-radius: var(--radius);
+    flex-shrink: 0;
+    width: 345px;
+    max-width: 100%;
+    border-radius: 6px;
     overflow: hidden;
+
+    @include tablet-lg {
+      width: 418px;
+    }
+
+    @include desktop {
+      width: 391px;
+    }
   }
 
   &__image {
+    display: block;
     width: 100%;
-    height: auto;
+    height: 371px;
     object-fit: cover;
-    border-radius: var(--radius);
+    border-radius: 6px;
 
     @include tablet-lg {
+      height: 526px;
+    }
+
+    @include desktop {
       height: 402px;
-      object-fit: cover;
     }
   }
 
   &__content {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    justify-content: space-between;
-  }
-
-  &__title {
-    @include section-title;
+    align-items: flex-start;
+    min-width: 0;
   }
 
   &__heading {
-    @include heading-h2;
+    margin: 0 0 16px;
+    font-family: var(--second-family);
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.3;
+    color: var(--text-accent-dark);
+
+    @include tablet-lg {
+      max-width: 318px;
+      margin-bottom: 24px;
+      font-family: var(--font-family);
+      font-size: 32px;
+      line-height: 1.15;
+    }
+
+    @include desktop {
+      max-width: none;
+      margin-bottom: 38.5px;
+    }
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+    width: 100%;
+
+    @include tablet-lg {
+      max-width: 418px;
+    }
+
+    @include desktop {
+      max-width: none;
+      margin-bottom: 38.5px;
+    }
   }
 
   &__text {
-    @include heading-h3;
+    margin: 0;
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.35;
+    color: var(--text-accent-dark);
   }
 
   &__cta {
-    align-self: stretch;
-    margin-top: 8px;
-    width: 100%;
-    min-height: clamp(52px, 14vw, 69px);
-    font-size: clamp(18px, 5.5vw, 24px);
+    box-sizing: border-box;
+    width: 345px;
+    max-width: 100%;
+    height: 69px;
+    min-height: 69px;
+    padding: 16px 36px;
+    border: 2px solid var(--button-primary-default);
+    border-radius: 6px;
+    background: var(--text-button);
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.25;
+    color: var(--button-primary-default);
+
+    @include tablet-lg {
+      width: 418px;
+      font-size: 32px;
+    }
 
     @include desktop {
-      font-size: 32px;
+      width: 688px;
+    }
+
+    &:hover {
+      background: var(--card-bg-hover);
+      color: var(--text-accent-dark);
+      border-color: var(--text-accent-dark);
     }
   }
 }

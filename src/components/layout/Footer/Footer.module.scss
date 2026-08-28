@@ -14,13 +14,8 @@
     gap: 32px;
 
     @include tablet {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @include desktop {
-      /* Figma: three columns × 353.33 inside 1140 */
-      grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(24px, 3vw, 40px);
       align-items: start;
     }
   }
@@ -32,7 +27,7 @@
     min-width: 0;
 
     &--schedule {
-      @include desktop {
+      @include tablet {
         align-items: stretch;
       }
     }

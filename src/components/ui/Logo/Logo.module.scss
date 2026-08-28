@@ -5,12 +5,13 @@
   flex-direction: column;
   align-items: flex-start;
   font-family: var(--third-family);
-  font-size: var(--fs-logo);
   font-weight: 400;
+  font-size: fluid(34px, 40px, $bp-mobile-min, $bp-tablet);
   line-height: 1;
   color: var(--text-accent-light);
   transition: opacity var(--transition);
   min-width: 0;
+  flex-shrink: 0;
 
   &:hover {
     opacity: 0.85;
@@ -18,6 +19,10 @@
 
   &--light {
     color: #ffffff;
+  }
+
+  @include desktop {
+    font-size: 48px;
   }
 
   &__line {
@@ -28,5 +33,9 @@
 
   &__line:last-child {
     padding-left: fluid(36px, 52px, $bp-mobile-min, $bp-tablet);
+
+    @include desktop {
+      padding-left: 52px;
+    }
   }
 }

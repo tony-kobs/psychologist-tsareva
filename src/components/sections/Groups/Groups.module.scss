@@ -1,58 +1,69 @@
 @use "../../../styles/mixins" as *;
 
 .groups {
-  &__title {
-    @include section-title;
-    text-align: center;
-    margin-bottom: 28px;
+  background-color: var(--form-bg);
 
-    @include tablet {
-      margin-bottom: 36px;
+  &__title {
+    margin: 0 0 24px;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.15;
+    text-align: center;
+    color: var(--text-accent-dark);
+
+    @include tablet-lg {
+      margin-bottom: 40px;
+      font-size: 48px;
+      letter-spacing: 0.04em;
     }
   }
 
   &__grid {
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 
-    @include tablet {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+    @include tablet-lg {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 428px));
+      gap: 32px;
+      justify-content: center;
+      align-items: stretch;
     }
 
     @include desktop {
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
+      grid-template-columns: repeat(4, minmax(0, 255px));
+      gap: 40px;
     }
   }
 
   &__card {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    max-width: 345px;
+    margin-inline: auto;
+    padding: 24px;
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    background-color: transparent;
     text-align: center;
-    gap: 12px;
-    padding: 28px 20px 24px;
-    background-color: #ffffff;
-    border: 1px solid rgba(206, 128, 102, 0.35);
-    border-radius: var(--radius);
-    transition:
-      background-color var(--transition),
-      box-shadow var(--transition);
 
-    &:hover {
-      background-color: var(--card-bg-hover);
-      box-shadow: 0 10px 28px rgba(201, 120, 94, 0.1);
+    @include tablet-lg {
+      max-width: 428px;
+      margin-inline: 0;
+      height: 100%;
     }
 
-    h3 {
-      @include heading-h4;
-    }
-
-    p {
-      flex-grow: 1;
-      @include body-regular;
-      color: var(--text-secondary);
+    @include desktop {
+      max-width: 255px;
     }
   }
 
@@ -60,23 +71,55 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: clamp(72px, 22vw, 100px);
-    height: clamp(72px, 22vw, 100px);
-    margin-bottom: 4px;
     flex-shrink: 0;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 43.5px;
 
     img {
-      width: clamp(52px, 18vw, 72px);
-      height: clamp(52px, 18vw, 72px);
+      display: block;
+      width: 120px;
+      height: 120px;
       max-width: none;
       object-fit: contain;
     }
   }
 
+  &__cardTitle {
+    margin: 0 0 12px;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.15;
+    text-align: center;
+    color: var(--text-accent-light);
+  }
+
+  &__cardText {
+    flex-grow: 1;
+    margin: 0 0 16px;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.35;
+    text-align: center;
+    color: var(--text-primary);
+  }
+
   &__btn {
-    margin-top: 8px;
-    min-width: 0;
+    box-sizing: border-box;
     width: 100%;
-    max-width: 220px;
+    max-width: 207px;
+    height: 47px;
+    min-height: 47px;
+    margin-top: auto;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.25;
+    text-align: center;
+    color: var(--text-button);
   }
 }

@@ -4,48 +4,49 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  height: var(--header-height);
   background-color: var(--bg-primary);
   border-bottom: 1px solid rgba(206, 128, 102, 0.18);
+  padding-block: 15px;
 
   &__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100%;
-    gap: clamp(12px, 4vw, 24px);
     min-width: 0;
   }
 
   &__nav {
     display: none;
+    flex-shrink: 1;
+    min-width: 0;
 
     @include desktop {
       display: block;
-      flex: 1;
     }
   }
 
   &__list {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 20px;
-
-    @media (min-width: 1440px) {
-      gap: 28px;
-    }
+    flex-wrap: nowrap;
+    gap: 54px;
   }
 
   &__link {
-    font-family: var(--font-heading);
-    font-size: 18px;
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 24px;
     line-height: 1;
     color: var(--text-primary);
-    transition: color var(--transition);
     white-space: nowrap;
+    transition: color var(--transition);
 
     &:hover {
+      color: var(--text-accent-light);
+    }
+
+    &--active {
+      font-weight: 700;
       color: var(--text-accent-light);
     }
   }
@@ -55,22 +56,23 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: clamp(40px, 12vw, 48px);
-  height: clamp(40px, 12vw, 48px);
-  color: var(--text-accent-light);
+  width: 48px;
+  height: 48px;
   flex-shrink: 0;
+  line-height: 0;
 
   @include desktop {
     display: none;
   }
 
-  svg {
-    width: 100%;
-    height: 100%;
+  img {
+    display: block;
+    width: 48px;
+    height: 48px;
+    max-width: none;
   }
 }
 
-/* Figma mobile-menu: full-screen panel */
 .menu {
   position: fixed;
   inset: 0;
@@ -107,95 +109,92 @@
     pointer-events: auto;
   }
 
-  &__phone {
-    display: flex;
-    align-items: center;
-    min-height: var(--topbar-height);
-    padding-inline: var(--container-pad);
-    background-color: var(--bg-dark-brown);
-  }
-
-  &__phoneLink {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--font-body);
-    font-size: fluid(14px, 18px, $bp-mobile-min, $bp-tablet);
-    line-height: 1;
-    color: #ffffff;
-  }
-
-  &__phoneIcon {
-    width: 22px;
-    height: 22px;
-    flex-shrink: 0;
-  }
-
   &__head {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: var(--header-height);
     gap: 16px;
+    padding-block: 15px;
+    padding-inline: var(--container-pad);
   }
 
   &__close {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: clamp(40px, 12vw, 48px);
-    height: clamp(40px, 12vw, 48px);
-    color: var(--text-accent-light);
+    width: 48px;
+    height: 48px;
     flex-shrink: 0;
+    line-height: 0;
 
-    svg {
-      width: 100%;
-      height: 100%;
+    img {
+      display: block;
+      width: 48px;
+      height: 48px;
+      max-width: none;
     }
   }
 
   &__nav {
     flex: 1;
-    padding-block: 8px 40px;
+    padding-inline: var(--container-pad);
+    padding-bottom: 40px;
+    margin-top: 15px;
   }
 
   &__list {
     display: flex;
     flex-direction: column;
-    border-top: 1px solid rgba(201, 120, 94, 0.45);
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
   &__link {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
     width: 100%;
-    min-height: 64px;
-    padding: 18px var(--container-pad);
-    border-bottom: 1px solid rgba(201, 120, 94, 0.45);
-    font-family: var(--font-body);
-    font-size: fluid(18px, 24px, $bp-mobile-min, $bp-tablet);
+    padding: 0;
+    font-family: var(--second-family);
     font-weight: 400;
-    line-height: 1.2;
+    font-size: 24px;
+    line-height: 1;
     color: var(--text-primary);
-    transition: color var(--transition), background-color var(--transition);
+    transition: color var(--transition);
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background-color: rgba(201, 120, 94, 0.45);
+    }
 
     &:hover,
     &:focus-visible {
       color: var(--text-accent-light);
-      background-color: var(--card-bg-hover);
     }
 
-    &--accent {
+    &--active {
+      font-weight: 700;
       color: var(--text-accent-light);
+
+      &::after {
+        background-color: var(--text-accent-light);
+      }
     }
   }
 
   &__chevron {
-    width: 22px;
-    height: 22px;
+    display: block;
+    width: 29px;
+    height: 29px;
     flex-shrink: 0;
-    color: var(--text-accent-light);
   }
 }

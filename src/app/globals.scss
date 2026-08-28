@@ -2,8 +2,6 @@
 @use "../styles/fluid" as *;
 @use "../styles/mixins" as *;
 
-@import "modern-normalize/modern-normalize.css";
-
 @font-face {
   font-family: "ArtScript";
   src:
@@ -30,6 +28,7 @@
   --card-bg-tertiary: #fdf6f1;
 
   --button-primary: #c8765b;
+  --button-primary-default: #c8765b;
   --button-secondary-border: #c8765b;
   --button-disabled: #e2dddc;
   --input-border: #ce8066;
@@ -38,6 +37,8 @@
 
   --font-body: var(--font-lato), "Lato", sans-serif;
   --font-heading: "Times New Roman", Georgia, serif;
+  --font-family: var(--font-heading);
+  --second-family: var(--font-lato), "Lato", sans-serif;
   --third-family: "ArtScript", sans-serif;
   --font-logo: var(--third-family);
 
@@ -46,8 +47,8 @@
   --container-max: 1440px;
   --transition: 0.25s ease;
 
-  /* ——— Mobile band: 320 → 768 ——— */
-  --container-pad: #{fluid(16px, 64px, $bp-mobile-min, $bp-tablet)};
+  /* ——— Mobile: 24px side padding ——— */
+  --container-pad: 24px;
 
   --fs-body: #{fluid(16px, 18px, $bp-mobile-min, $bp-tablet)};
   --fs-body-lg: #{fluid(16px, 18px, $bp-mobile-min, $bp-tablet)};
@@ -65,11 +66,20 @@
   --icon-social: #{fluid(40px, 48px, $bp-mobile-min, $bp-tablet)};
   --icon-social-glyph: #{fluid(28px, 36px, $bp-mobile-min, $bp-tablet)};
 
-  --topbar-height: #{fluid(40px, 48px, $bp-mobile-min, $bp-tablet)};
+  --topbar-height: 48px;
   --header-height: #{fluid(88px, 120px, $bp-mobile-min, $bp-tablet)};
   --hero-height-m: #{fluid(620px, 772px, $bp-mobile-min, $bp-tablet)};
   --hero-height-d: #{fluid(700px, 772px, $bp-mobile-min, $bp-tablet)};
-  --section-pad: #{fluid(28px, 56px, $bp-mobile-min, $bp-tablet)};
+
+  --section-pad-y: 40px;
+  --section-pad-after-hero: 80px 40px;
+  --section-pad-before-footer: 40px 80px;
+
+  @media (max-width: #{$bp-tablet - 1px}) {
+    --section-pad-y: 20px;
+    --section-pad-after-hero: 40px 20px;
+    --section-pad-before-footer: 20px 40px;
+  }
 
   --gradient-section: linear-gradient(
     90deg,
@@ -81,10 +91,10 @@
   );
 }
 
-/* ——— Tablet → Desktop: 768 → 1440 ——— */
+/* ——— Tablet: 64px side padding ——— */
 @media (min-width: #{$bp-tablet}) {
   :root {
-    --container-pad: #{fluid(64px, 150px, $bp-tablet, $bp-desktop)};
+    --container-pad: 64px;
 
     --fs-body: #{fluid(18px, 18px, $bp-tablet, $bp-desktop)};
     --fs-body-lg: #{fluid(18px, 20px, $bp-tablet, $bp-desktop)};
@@ -106,14 +116,13 @@
     --header-height: 120px;
     --hero-height-m: 772px;
     --hero-height-d: 772px;
-    --section-pad: #{fluid(56px, 80px, $bp-tablet, $bp-desktop)};
   }
 }
 
-/* ——— After desktop: 1440 → 1920+ (гумова типографіка / відступи; контейнер фіксований) ——— */
+/* ——— Desktop: 150px side padding ——— */
 @media (min-width: #{$bp-desktop}) {
   :root {
-    --container-pad: #{fluid(150px, 180px, $bp-desktop, $bp-desktop-max)};
+    --container-pad: 150px;
 
     --fs-body: 18px;
     --fs-body-lg: #{fluid(20px, 22px, $bp-desktop, $bp-desktop-max)};
@@ -123,7 +132,6 @@
     --fs-logo: #{fluid(45px, 52px, $bp-desktop, $bp-desktop-max)};
     --ls-h1: 0.08em;
 
-    --section-pad: #{fluid(80px, 96px, $bp-desktop, $bp-desktop-max)};
     --hero-height-d: 772px;
   }
 }
@@ -131,7 +139,7 @@
 .page {
   width: 100%;
   margin-inline: auto;
-  background-color: var(--bg-primary);
+  background-color: var(--form-bg);
   overflow-x: clip;
 }
 
@@ -159,7 +167,7 @@ body {
   font-size: var(--fs-body);
   line-height: 1.35;
   color: var(--text-primary);
-  background-color: #f3ebe4;
+  background-color: var(--form-bg);
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
   scrollbar-width: none;
@@ -225,7 +233,15 @@ textarea {
 }
 
 .section {
-  padding-block: var(--section-pad);
+  padding-block: var(--section-pad-y);
+}
+
+main > section:nth-child(2) {
+  padding-block: var(--section-pad-after-hero);
+}
+
+main > section:last-child {
+  padding-block: var(--section-pad-before-footer);
 }
 
 .section--alt {

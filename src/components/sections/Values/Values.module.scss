@@ -1,20 +1,21 @@
 @use "../../../styles/mixins" as *;
 
 .values {
-  padding-block: fluid(28px, 56px, $bp-mobile-min, $bp-tablet);
-
-  @include desktop {
-    padding-block: fluid(56px, 80px, $bp-desktop, $bp-desktop-max) fluid(32px, 48px, $bp-desktop, $bp-desktop-max);
-  }
-
   &__grid {
     display: grid;
-    gap: fluid(10px, 24px, $bp-mobile-min, $bp-tablet);
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 164px);
+    gap: 17px;
+    justify-content: center;
+    align-items: stretch;
+
+    @include tablet-lg {
+      grid-template-columns: repeat(2, 428px);
+      gap: 40px;
+    }
 
     @include desktop {
-      grid-template-columns: repeat(4, 1fr);
-      gap: fluid(32px, 48px, $bp-desktop, $bp-desktop-max);
+      grid-template-columns: repeat(4, 255px);
+      gap: 40px;
     }
   }
 
@@ -22,18 +23,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: fluid(12px, 24px, $bp-mobile-min, $bp-tablet);
-    padding: fluid(14px, 24px, $bp-mobile-min, $bp-tablet) 4px;
+    gap: 24px;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100%;
+    padding: 24px 4px;
     border: 1px solid var(--input-border);
-    border-radius: var(--radius);
+    border-radius: 6px;
     background-color: transparent;
     text-align: center;
-    min-height: 100%;
-    min-width: 0;
     transition: background-color var(--transition);
 
+    @include tablet-lg {
+      padding: 24px;
+    }
+
     @include desktop {
-      padding: fluid(24px, 28px, $bp-desktop, $bp-desktop-max);
+      padding: 24px;
     }
 
     &:hover {
@@ -45,15 +51,16 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--icon-values);
-    height: var(--icon-values);
-    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
     background-color: var(--card-bg-hover);
     flex-shrink: 0;
 
     img {
-      width: var(--icon-values-glyph);
-      height: var(--icon-values-glyph);
+      display: block;
+      width: 60px;
+      height: 60px;
       max-width: none;
       object-fit: contain;
     }
@@ -69,12 +76,22 @@
   }
 
   &__title {
-    @include heading-h4;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin: 0;
   }
 
   &__text {
-    @include body-regular;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.35;
     text-align: center;
+    color: var(--text-primary);
+    margin: 0;
     overflow-wrap: anywhere;
   }
 }

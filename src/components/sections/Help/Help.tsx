@@ -7,6 +7,14 @@ export function Help() {
     <section id="help" className={`section ${styles.help}`}>
       <div className={`container ${styles.help__inner}`}>
         <div className={styles.help__checklist}>
+          <img
+            src="/images/help-background.png"
+            alt=""
+            className={styles.help__decor}
+            width={277}
+            height={587}
+            aria-hidden="true"
+          />
           <h2 className={styles.help__title}>{HELP.title}</h2>
           <ul className={styles.help__list}>
             {HELP.items.map((item) => (
@@ -18,7 +26,7 @@ export function Help() {
                   height={40}
                   className={styles.help__check}
                 />
-                <span>{item}</span>
+                <span className={styles.help__itemText}>{item}</span>
               </li>
             ))}
           </ul>
@@ -33,11 +41,11 @@ export function Help() {
             {HELP.directions.map((dir) => (
               <li key={dir.title} className={styles.help__card}>
                 <div className={styles.help__icon}>
-                  <img src={dir.icon} alt="" width={36} height={36} />
+                  <img src={dir.icon} alt="" width={60} height={60} />
                 </div>
-                <div>
-                  <h3>{dir.title}</h3>
-                  <p>{dir.text}</p>
+                <div className={styles.help__cardBody}>
+                  <h3 className={styles.help__cardTitle}>{dir.title}</h3>
+                  <p className={styles.help__cardText}>{dir.text}</p>
                 </div>
               </li>
             ))}

@@ -3,89 +3,162 @@
 .game {
   position: relative;
   overflow: hidden;
-  background-color: var(--form-bg);
-  background-image: var(--gradient-section);
+  padding-block: 40px;
+  background: linear-gradient(
+    90deg,
+    #eddacd 0%,
+    rgba(237, 218, 205, 0.6) 16.57%,
+    rgba(237, 218, 205, 0.8) 32.84%,
+    rgba(237, 218, 205, 0.2) 50%
+  );
 
-  /* Figma inset ≈ top 17%, left -4.65%, width ~19% */
-  &::before {
-    content: "";
+  &__decor {
     position: absolute;
-    left: -4.65%;
-    top: 17.17%;
-    width: min(280px, 19.15%);
-    height: 83%;
-    background: url("/images/background-game.png") no-repeat left top / contain;
-    mix-blend-mode: multiply;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(242px, 62vw);
+    height: auto;
+    max-width: none;
+    object-fit: contain;
+    object-position: left center;
     opacity: 0.55;
+    mix-blend-mode: multiply;
     pointer-events: none;
     z-index: 0;
-  }
 
-  @media (max-width: 1023px) {
-    /* Mobile Group: x≈-16 y≈100, 242×288 */
-    &::before {
-      left: -16px;
-      top: 100px;
-      width: min(242px, 62vw);
-      height: min(288px, 28%);
-      opacity: 0.45;
+    @include tablet-lg {
+      width: min(280px, 22vw);
     }
   }
 
   &__inner {
     position: relative;
     z-index: 1;
-    display: grid;
-    gap: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    align-items: center;
 
     @include tablet-lg {
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 48px;
-      align-items: center;
+      flex-direction: row;
+      align-items: stretch;
+      gap: 60px;
     }
   }
 
   &__media {
-    border-radius: var(--radius);
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 345px;
     overflow: hidden;
+    border-radius: 6px;
+
+    @include tablet-lg {
+      max-width: 299px;
+    }
 
     img {
+      display: block;
       width: 100%;
-      height: auto;
+      max-width: 345px;
+      height: 345px;
       object-fit: cover;
-      border-radius: var(--radius);
+      border-radius: 6px;
+
+      @include tablet-lg {
+        max-width: 299px;
+        height: 401px;
+      }
+
+      @include desktop {
+        height: 431px;
+      }
     }
   }
 
   &__content {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    align-items: stretch;
+    width: 100%;
+
+    @include tablet-lg {
+      justify-content: space-between;
+    }
+
+    @include desktop {
+      justify-content: flex-start;
+    }
   }
 
   &__title {
-    @include section-title;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    margin: 0 0 8px;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.15;
+    color: var(--text-accent-dark);
   }
 
   &__subtitle {
-    display: block;
-    @include heading-h2;
+    margin: 0 0 24px;
+    font-family: var(--second-family);
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.2;
+    color: var(--text-accent-dark);
+
+    @include tablet-lg {
+      margin-bottom: 0;
+    }
+
+    @include desktop {
+      margin-bottom: 54px;
+    }
+  }
+
+  &__texts {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 0 0 24px;
+
+    @include tablet-lg {
+      margin-bottom: 0;
+    }
+
+    @include desktop {
+      margin-bottom: 54px;
+    }
   }
 
   &__text {
-    @include body-regular;
-    color: var(--text-secondary);
+    margin: 0;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.3;
+    color: var(--text-accent-dark);
   }
 
   &__cta {
-    align-self: stretch;
-    margin-top: 8px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 780px;
+    height: 69px;
+    min-height: 69px;
+    padding: 16px 36px;
+    border: 2px solid var(--button-primary-default);
+    border-radius: 6px;
+    background: var(--text-button);
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.25;
+    color: var(--button-primary-default);
 
-    @include desktop {
-      min-height: 69px;
+    @include tablet-lg {
       font-size: 32px;
     }
   }

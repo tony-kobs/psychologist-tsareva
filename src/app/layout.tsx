@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Lato } from "next/font/google";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SITE, getSiteUrl } from "@/constants/site";
+import "modern-normalize/modern-normalize.css";
 import "./globals.scss";
 
 const lato = Lato({

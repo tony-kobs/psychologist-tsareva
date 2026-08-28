@@ -1,0 +1,101 @@
+---
+description: Правила роботи з замовником і pixel-pass лендінгу psychologist-tsareva
+alwaysApply: true
+---
+
+# Як працювати з цим проєктом
+
+Оновлювати **цей файл** після кожної секції, брекпоінта, виправлення й уточнення від користувача.
+
+## Комунікація
+
+- Мова: українська, коротко, без зайвих питань.
+- Не питати очевидне. Якщо в матеріалах / скріні / Figma видно позицію, розмір і текст — робити одразу.
+- Не крутити навмання (flip, overflow, bottom:0 «авось»). Спочатку відкрити PNG, скрін і макет.
+- Скрін у чаті > Figma > існуючий код.
+- Після здачі секції — коротко що змінилось і на яких ширинах перевірити (1440 / 1024 / 393), Ctrl+F5.
+
+## Джерела правди
+
+- `../psychologist-tsareva-materials/` — скріни, PNG декору, фото
+- Figma fileKey `FuHUB2EHm6mOHYuYRSE71N`
+- Живий сайт: https://psychologist-tsareva.vercel.app
+- Стек: Next.js 15, React 19, TS, SCSS Modules
+
+## Верстка — завжди
+
+- Фіксована ширина з макету → **`max-width`**, не голий `width` (на всьому проєкті).
+- Висота карток у рядку: `grid` + `align-items: stretch` + `height: 100%`. **Без** `min-height` / фіксованого `height` як «паркану». Кнопка вниз через `margin-top: auto`.
+- Фон секції як body, якщо не сказано інакше: `background-color: var(--form-bg)`. Не чіпати `section--alt`, якщо макет бежевий як сторінка.
+- Глобальні `img { max-width: 100%; height: auto }` ламають декор і іконки → на цих `img` ставити `max-width: none` і явну висоту.
+- Outline-кнопка (як About / Game CTA): `background: var(--text-button)`, `border: 2px solid var(--button-primary-default)`, **текст** `color: var(--button-primary-default)` (не білий на білому).
+- Primary-кнопка: `background` + `border` `--button-primary-default`, текст `--text-button`.
+
+## Breakpoints
+
+- mobile: `<768` (референс 393)
+- tablet: `768–1439`; багато карток/сіток з **`1024` (`tablet-lg`)**
+- desktop: `≥1440`
+
+Глобальні паддінги секцій (`globals.scss`): після Hero 80/40 (моб 40/20); звичайні 40/40 (моб 20/20); Location перед футером 40/80 (моб 20/40). Окремі секції можуть перевизначити (Game — 40/40 скрізь).
+
+## Декор (листки)
+
+- Прив’язка до **краю секції**, не колонки контейнера. За потреби: `calc(-1 * var(--container-pad) - max(0px, (100vw - var(--container-max)) / 2))`.
+- Вертикаль — **навпроти свого блоку** (заголовок / чеклист), не `bottom` усієї секції.
+- Не `scaleX(-1)`, поки не перевірені alpha-bounds PNG. `overflow: hidden` часто ріже гілку.
+- `mix-blend-mode: multiply`, opacity ~0.55, `pointer-events: none`.
+
+---
+
+## Зроблено (pixel-pass)
+
+### Hero
+- Desktop: pad 84, tags gap 80, градієнт 974px, листок `background-hero.png` 160×291 top ~180
+- Tablet 768–1439: `hero-photo-tablet-1x/2x`, градієнт 50%, листок знизу-ліворуч, tags gap 40
+- Mobile 393: `hero-photo-mobile-1x/2x`, pad 36, tags 143 / gap 20, title 32, CTA 227×69, `hero-background-mobile.png` знизу-праворуч
+
+### Values
+- Desktop: 255×357 (контентна висота, stretch), gap 40, 4 кол
+- Tablet 1024+: 428×270 логіка / 2×2
+- Mobile: 164×375 логіка, pad 24×4; іконка wrap 100, glyph 60, title 20, text 18
+
+### About
+- Фон `--form-bg`, декор `about-background.png` справа/знизу
+- Спеки title / photo / subtitle / description / CTA з макета
+
+### Help
+- Tablet 1024–1439: вертикальний стек, заголовки по центру, пункти ліворуч, кнопка 487×69 по центру, картки 432×157 gap 32
+- Desktop ≥1440: 2 колонки (чеклист | напрями)
+- Декор **лише tablet**: `help-background.png` 277×587, правий край секції, всередині checklist, стебло вниз, гілка вгору навпроти «Я допоможу…»
+
+### Groups
+- Фон `--form-bg`
+- Title: 48px + ls 0.04em (моб 32), center, `--text-accent-dark`
+- Картки: border `--input-border`, r 6, pad 24; desktop max-w 255 gap 40 / 4 кол; tablet 1024 max-w 428 / 2 кол; mobile max-w 345 / 1 кол; **рівна висота в рядку**
+- Іконка 120×120, mb 43.5px
+- H3 32 / `--text-accent-light`; опис 18 / `--text-primary`
+- Кнопка max-w 207, h 47, pad 12×24, 20/700, `--text-button`
+- Копія зі скріну: «Стосунки з собою», «Soft-Skills у житті та кар'єрі», «Індивідуальні коуч-сесії», «Гра «Віра в себе»»
+
+### Game
+- Pad 40/40 усі бп
+- Градієнт: `90deg, #eddacd 0%, rgba(237,218,205,.6) 16.57%, … .8 32.84%, … .2 50%`
+- Декор `game-background.png` — лівий край, як на скріні
+- Фото r 6: desk 299×431 gap 60; tablet 299×401, текст stretch під фото; mobile 345×345, gap до тексту 60
+- Title 32/700; subtitle 24/700 `--second-family` mb 54 desk; опис 20/400 lh 130% gap 24, 54 до кнопки
+- CTA outline 780×69 pad 16×36
+
+### Інше вже чіпали раніше
+- Header/Menu: tablet = desktop nav
+- Footer: 3 колонки на tablet
+- Location: tablet-адаптивна мапа
+- Типографіка: `--font-family` / розміри з макета, не мішати body/heading без спеку
+
+---
+
+## Наступна сесія (2026-08-29)
+
+**Почати з `#reviews` (закоментовано в `page.tsx`).** Далі за чергою, якщо не скажуть інакше: Certificates (якщо ще не під макет), Contacts, Gallery, Location/Footer дотяг.
+
+Не починати нову секцію, поки користувач не дав скрін + спеки. Знову: матеріали → Figma → код.
