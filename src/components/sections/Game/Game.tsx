@@ -9,9 +9,10 @@ export function Game() {
         <div className={styles.game__media}>
           <img
             src="/images/game-photo.jpg"
+            srcSet="/images/game-photo.jpg 1x, /images/game-photo@2x.jpg 2x"
             alt="Авторська психологічна гра «Віра в себе»"
-            width={560}
-            height={420}
+            width={300}
+            height={431}
             loading="lazy"
           />
         </div>
