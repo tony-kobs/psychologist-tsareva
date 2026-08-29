@@ -29,7 +29,8 @@ alwaysApply: true
 - Фон секції як body, якщо не сказано інакше: `background-color: var(--form-bg)`. Не чіпати `section--alt`, якщо макет бежевий як сторінка.
 - Спільні міксини (`src/styles/_mixins.scss`): `landing-title` (+ `$mb-lg`, `$color`), `landing-title-fixed-48`, `landing-cta`, `cta-label-pair`, `section-gradient-bg`, `decor-leaf`, `swiper-arrows-row`, `swiper-track`, `swiper-arrows-nav-order` — DRY без зміни візуалу.
 - Глобальні `img { max-width: 100%; height: auto }` ламають декор і іконки → на цих `img` ставити `max-width: none` і явну висоту.
-- **UI states (`components.jpg`):** primary hover `#d98970` / disabled `#e2dddc`; outline hover `--card-bg-hover` (peach); картки Values/Groups/Help/Reviews — hover peach; форма — focus, error (`*…`), success (check + «Повідомлення відправлено»); SwiperArrow hover fill.
+- **UI states (`components.jpg`):** primary hover `#d98970` / disabled `#e2dddc`; outline hover `--card-bg-hover` (peach); картки Values/Groups/Help/Reviews — hover peach + легкий lift; форма — focus, error (`*…`), success (check); SwiperArrow hover fill.
+- **Motion polish (`feature/landing-polish`):** `motion` + `Reveal`/`Stagger` — scroll-reveal, hero choreography; макет/токени без змін; `prefers-reduced-motion`.
 
 ## Breakpoints
 

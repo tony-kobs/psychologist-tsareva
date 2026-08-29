@@ -1,10 +1,13 @@
+"use client";
+
 import { VALUES } from "@/constants/content";
+import { Stagger } from "@/components/ui/Reveal";
 import styles from "./Values.module.scss";
 
 export function Values() {
   return (
     <section className={styles.values} aria-label="Цінності">
-      <div className={`container ${styles.values__grid}`}>
+      <Stagger as="div" className={`container ${styles.values__grid}`} stagger={0.1}>
         {VALUES.map((item) => (
           <article key={item.title} className={styles.values__card}>
             <div className={styles.values__iconWrap}>
@@ -16,7 +19,7 @@ export function Values() {
             </div>
           </article>
         ))}
-      </div>
+      </Stagger>
     </section>
   );
 }

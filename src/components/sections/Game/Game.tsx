@@ -1,4 +1,7 @@
+"use client";
+
 import { Button } from "@/components/ui/Button/Button";
+import { Reveal } from "@/components/ui/Reveal";
 import { GAME } from "@/constants/content";
 import styles from "./Game.module.scss";
 
@@ -12,7 +15,7 @@ export function Game() {
         aria-hidden="true"
       />
       <div className={`container ${styles.game__inner}`}>
-        <div className={styles.game__media}>
+        <Reveal className={styles.game__media} y={28}>
           <img
             src="/images/game-photo.jpg"
             srcSet="/images/game-photo.jpg 1x, /images/game-photo@2x.jpg 2x"
@@ -21,8 +24,8 @@ export function Game() {
             height={431}
             loading="lazy"
           />
-        </div>
-        <div className={styles.game__content}>
+        </Reveal>
+        <Reveal className={styles.game__content} delay={0.12} y={20}>
           <h2 className={styles.game__title}>{GAME.title}</h2>
           <p className={styles.game__subtitle}>{GAME.subtitle}</p>
           <div className={styles.game__texts}>
@@ -35,7 +38,7 @@ export function Game() {
           <Button href="#contacts" variant="secondary" className={styles.game__cta}>
             {GAME.cta}
           </Button>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -1,4 +1,7 @@
+"use client";
+
 import { Button } from "@/components/ui/Button/Button";
+import { Reveal, Stagger } from "@/components/ui/Reveal";
 import { HELP } from "@/constants/content";
 import styles from "./Help.module.scss";
 
@@ -6,7 +9,7 @@ export function Help() {
   return (
     <section id="help" className={`section ${styles.help}`}>
       <div className={`container ${styles.help__inner}`}>
-        <div className={styles.help__checklist}>
+        <Reveal className={styles.help__checklist} y={24}>
           <img
             src="/images/help-background.png"
             alt=""
@@ -33,11 +36,13 @@ export function Help() {
           <Button href="#contacts" className={styles.help__cta}>
             {HELP.cta}
           </Button>
-        </div>
+        </Reveal>
 
         <div className={styles.help__directions}>
-          <h2 className={styles.help__title}>{HELP.directionsTitle}</h2>
-          <ul className={styles.help__cards}>
+          <Reveal as="h2" className={styles.help__title} delay={0.08}>
+            {HELP.directionsTitle}
+          </Reveal>
+          <Stagger as="ul" className={styles.help__cards} stagger={0.1}>
             {HELP.directions.map((dir) => (
               <li key={dir.title} className={styles.help__card}>
                 <div className={styles.help__icon}>
@@ -49,7 +54,7 @@ export function Help() {
                 </div>
               </li>
             ))}
-          </ul>
+          </Stagger>
         </div>
       </div>
     </section>

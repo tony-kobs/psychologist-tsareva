@@ -43,7 +43,10 @@
     border-radius: 6px;
     background-color: transparent;
     text-align: center;
-    transition: background-color var(--transition);
+    transition:
+      background-color var(--transition),
+      transform var(--transition),
+      box-shadow var(--transition);
 
     @media (min-width: #{$bp-mobile}) {
       padding: 24px fluid(4px, 24px, $bp-mobile, $bp-tablet-lg);
@@ -55,6 +58,8 @@
 
     &:hover {
       background-color: var(--card-bg-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(98, 28, 4, 0.08);
     }
   }
 

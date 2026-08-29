@@ -1,4 +1,7 @@
+"use client";
+
 import { Button } from "@/components/ui/Button/Button";
+import { Reveal } from "@/components/ui/Reveal";
 import { ABOUT } from "@/constants/content";
 import styles from "./About.module.scss";
 
@@ -6,10 +9,12 @@ export function About() {
   return (
     <section id="about" className={`section ${styles.about}`}>
       <div className={`container ${styles.about__wrap}`}>
-        <h2 className={styles.about__title}>{ABOUT.title}</h2>
+        <Reveal as="h2" className={styles.about__title}>
+          {ABOUT.title}
+        </Reveal>
 
         <div className={styles.about__inner}>
-          <div className={styles.about__media}>
+          <Reveal className={styles.about__media} y={28}>
             <img
               src="/images/about-photo.jpg"
               alt="Царьова Юлія"
@@ -17,9 +22,9 @@ export function About() {
               width={391}
               height={402}
             />
-          </div>
+          </Reveal>
 
-          <div className={styles.about__content}>
+          <Reveal className={styles.about__content} delay={0.12} y={20}>
             <h3 className={styles.about__heading}>{ABOUT.heading}</h3>
 
             <div className={styles.about__description}>
@@ -33,7 +38,7 @@ export function About() {
             <Button href="#help" variant="secondary" className={styles.about__cta}>
               {ABOUT.cta}
             </Button>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

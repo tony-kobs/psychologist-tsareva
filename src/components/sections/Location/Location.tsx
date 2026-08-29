@@ -1,4 +1,7 @@
+"use client";
+
 import { Button } from "@/components/ui/Button/Button";
+import { Reveal } from "@/components/ui/Reveal";
 import { LOCATION, PHONE, PHONE_HREF } from "@/constants/content";
 import styles from "./Location.module.scss";
 
@@ -16,7 +19,7 @@ export function Location() {
       />
 
       <div className={`container ${styles.location__inner}`}>
-        <div className={styles.location__content}>
+        <Reveal className={styles.location__content} y={20}>
           <h2 id="location-title" className={styles.location__title}>
             {LOCATION.title}
           </h2>
@@ -28,9 +31,9 @@ export function Location() {
             <span className={styles.location__ctaFull}>{LOCATION.cta}</span>
             <span className={styles.location__ctaShort}>{LOCATION.ctaShort}</span>
           </Button>
-        </div>
+        </Reveal>
 
-        <div className={styles.location__map}>
+        <Reveal className={styles.location__map} delay={0.12} y={24}>
           <iframe
             title={`Карта кабінету — ${LOCATION.address}`}
             src="https://maps.google.com/maps?q=Kharkiv&t=&z=14&ie=UTF8&iwloc=&output=embed"
@@ -38,7 +41,7 @@ export function Location() {
             referrerPolicy="no-referrer-when-downgrade"
             allowFullScreen
           />
-        </div>
+        </Reveal>
       </div>
     </section>
   );

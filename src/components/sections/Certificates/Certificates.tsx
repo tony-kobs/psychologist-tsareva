@@ -1,3 +1,6 @@
+"use client";
+
+import { Reveal, Stagger } from "@/components/ui/Reveal";
 import styles from "./Certificates.module.scss";
 
 const CERTS = [
@@ -11,8 +14,10 @@ export function Certificates() {
   return (
     <section id="certificates" className={`section ${styles.certs}`}>
       <div className="container">
-        <h2 className={styles.certs__title}>Сертифікати</h2>
-        <ul className={styles.certs__grid}>
+        <Reveal as="h2" className={styles.certs__title}>
+          Сертифікати
+        </Reveal>
+        <Stagger as="ul" className={styles.certs__grid} stagger={0.09}>
           {CERTS.map((src, i) => (
             <li key={src} className={styles.certs__item}>
               <img
@@ -24,7 +29,7 @@ export function Certificates() {
               />
             </li>
           ))}
-        </ul>
+        </Stagger>
       </div>
     </section>
   );

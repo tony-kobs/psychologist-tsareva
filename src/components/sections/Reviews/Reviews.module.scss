@@ -5,6 +5,7 @@
 
   &__wrap {
     position: relative;
+    overflow: visible;
   }
 
   &__title {
@@ -13,6 +14,7 @@
 
   &__row {
     @include swiper-arrows-row($mobile-gap-y: 40px, $mobile-gap-x: 16px, $side-gap: 16px);
+    overflow: visible;
 
     @include desktop {
       gap: 24px;
@@ -21,9 +23,16 @@
 
   &__swiper {
     @include swiper-track;
+    overflow: visible;
 
     :global(.swiper-wrapper) {
       align-items: stretch;
+      overflow: visible;
+    }
+
+    :global(.swiper-slide) {
+      overflow: visible;
+      height: auto;
     }
   }
 
@@ -33,6 +42,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    overflow: visible;
 
     @include tablet {
       width: fluid(250px, 321px, $bp-tablet, $bp-desktop);
@@ -56,7 +66,9 @@
     border-radius: 20px;
     background-color: #ffffff;
     box-shadow: 0 0 2px 0 #f75555;
-    transition: background-color var(--transition);
+    transition:
+      background-color var(--transition),
+      box-shadow var(--transition);
 
     @include tablet {
       max-width: fluid(250px, 321px, $bp-tablet, $bp-desktop);
@@ -68,6 +80,7 @@
 
     &:hover {
       background-color: var(--card-bg-hover);
+      box-shadow: 0 4px 16px rgba(98, 28, 4, 0.1);
     }
   }
 

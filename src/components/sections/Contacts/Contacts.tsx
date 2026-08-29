@@ -5,6 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import clsx from "clsx";
 import { SocialIcons } from "@/components/ui/SocialIcons/SocialIcons";
+import { Reveal } from "@/components/ui/Reveal";
 import { CONTACTS, PHONE, PHONE_HREF } from "@/constants/content";
 import styles from "./Contacts.module.scss";
 
@@ -46,17 +47,17 @@ export function Contacts() {
         aria-hidden="true"
       />
       <div className={`container ${styles.contacts__inner}`}>
-        <div className={styles.contacts__info}>
+        <Reveal className={styles.contacts__info} y={20}>
           <h2 className={styles.contacts__title}>{CONTACTS.title}</h2>
           <p className={styles.contacts__text}>{CONTACTS.text}</p>
           <a href={PHONE_HREF} className={styles.contacts__phone}>
             {PHONE}
           </a>
           <SocialIcons variant="brand" className={styles.contacts__socials} />
-        </div>
+        </Reveal>
 
         {sent ? (
-          <div className={styles.contacts__success} role="status">
+          <Reveal className={styles.contacts__success} role="status" y={16}>
             <img
               className={styles.contacts__successIcon}
               src="/images/check.svg"
@@ -71,8 +72,9 @@ export function Contacts() {
             <p className={styles.contacts__successText}>
               Ми обов&apos;язково зв&apos;яжемося з Вами найближчим часом.
             </p>
-          </div>
+          </Reveal>
         ) : (
+          <Reveal y={20} delay={0.1}>
           <Formik
             initialValues={initialValues}
             validationSchema={schema}
@@ -187,6 +189,7 @@ export function Contacts() {
               );
             }}
           </Formik>
+          </Reveal>
         )}
       </div>
     </section>

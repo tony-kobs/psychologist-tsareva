@@ -7,6 +7,7 @@ import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import { SwiperArrow } from "@/components/ui/SwiperArrow/SwiperArrow";
+import { Reveal } from "@/components/ui/Reveal";
 import styles from "./Gallery.module.scss";
 
 const IMAGES = [
@@ -33,11 +34,11 @@ export function Gallery() {
       aria-labelledby="gallery-title"
     >
       <div className={`container ${styles.gallery__wrap}`}>
-        <h2 id="gallery-title" className={styles.gallery__title}>
+        <Reveal as="h2" id="gallery-title" className={styles.gallery__title}>
           Галерея
-        </h2>
+        </Reveal>
 
-        <div className={styles.gallery__row}>
+        <Reveal className={styles.gallery__row} delay={0.1} y={20}>
           <SwiperArrow
             direction="prev"
             className={`${styles.gallery__arrow} ${styles["gallery__arrow--prev"]}`}
@@ -80,7 +81,7 @@ export function Gallery() {
             aria-label="Наступне фото"
             onClick={() => swiperRef.current?.slideNext()}
           />
-        </div>
+        </Reveal>
       </div>
     </section>
   );

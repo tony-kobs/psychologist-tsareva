@@ -240,7 +240,10 @@
     border: 1px solid var(--input-border);
     border-radius: 6px;
     background-color: var(--card-bg-tertiary);
-    transition: background-color var(--transition);
+    transition:
+      background-color var(--transition),
+      transform var(--transition),
+      box-shadow var(--transition);
 
     @include tablet-lg {
       width: 100%;
@@ -254,6 +257,8 @@
 
     &:hover {
       background-color: var(--card-bg-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(98, 28, 4, 0.08);
     }
   }
 

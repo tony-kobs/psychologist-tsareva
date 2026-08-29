@@ -8,6 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { REVIEWS } from "@/constants/content";
 import { SwiperArrow } from "@/components/ui/SwiperArrow/SwiperArrow";
+import { Reveal } from "@/components/ui/Reveal";
 import styles from "./Reviews.module.scss";
 
 function StarIcon() {
@@ -29,9 +30,11 @@ export function Reviews() {
   return (
     <section id="reviews" className={`section ${styles.reviews}`}>
       <div className={`container ${styles.reviews__wrap}`}>
-        <h2 className={styles.reviews__title}>Відгуки</h2>
+        <Reveal as="h2" className={styles.reviews__title}>
+          Відгуки
+        </Reveal>
 
-        <div className={styles.reviews__row}>
+        <Reveal className={styles.reviews__row} delay={0.1} y={20}>
           <SwiperArrow
             direction="prev"
             className={`${styles.reviews__arrow} ${styles["reviews__arrow--prev"]}`}
@@ -102,7 +105,7 @@ export function Reviews() {
             aria-label="Наступний відгук"
             onClick={() => swiperRef.current?.slideNext()}
           />
-        </div>
+        </Reveal>
       </div>
     </section>
   );
