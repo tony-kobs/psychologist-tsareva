@@ -74,7 +74,7 @@ export function Contacts() {
             </p>
           </Reveal>
         ) : (
-          <Reveal y={20} delay={0.1}>
+          <Reveal className={styles.contacts__panel} y={20} delay={0.1}>
           <Formik
             initialValues={initialValues}
             validationSchema={schema}
