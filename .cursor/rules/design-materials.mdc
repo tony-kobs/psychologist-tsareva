@@ -49,14 +49,15 @@ alwaysApply: true
 ## Зроблено (pixel-pass)
 
 ### Hero
-- Desktop: pad 84, tags gap 80, градієнт 974px, листок `background-hero.png` 160×291 top ~180
-- Tablet 768–1439: `hero-photo-tablet-1x/2x`, градієнт 50%, листок знизу-ліворуч, tags gap 40
+- Desktop: pad 84, tags gap 80, **tags equal width** (`inline-grid` + `1fr`), градієнт 974px, листок `background-hero.png` 160×291 top ~180
+- Tablet 768–1439: `hero-photo-tablet-1x/2x`, градієнт 50%, листок знизу-ліворуч, tags gap 40, equal width
 - Mobile 393: `hero-photo-mobile-1x/2x`, pad 36, tags 143 / gap 20, title 32, CTA 227×69, `hero-background-mobile.png` знизу-праворуч
+- **Desktop titles:** усі секційні H2 по лівому краю (Groups / Certificates / Help directions — `text-align: left` ≥1440)
 
 ### Values
-- Desktop: контейнер **max-width 1440**, 4 кол `1fr`, **gap 40**, картки на всю ширину контейнера (з pad); висота stretch
-- Tablet-lg: 2 кол, gap 40, width 100% контейнера
-- Mobile: 2 кол, width 100%
+- **Mobile (<768):** 1 кол; картка: іконка+title в ряд, текст знизу на всю ширину; bg `--card-bg-hover`; pad 16; gap 16
+- Tablet 768+: 2 кол, іконка/title/текст колонка по центру, bg transparent (hover peach), gap → 40
+- Desktop: контейнер **max-width 1440**, 4 кол `1fr`, **gap 40**; висота stretch
 - Tablet 1024+: 428×270 логіка / 2×2
 - Mobile: 164×375 логіка, pad 24×4; іконка wrap 100, glyph 60, title 20, text 18
 
@@ -89,14 +90,12 @@ alwaysApply: true
 ### Reviews (`#reviews`)
 - Фон `--form-bg`
 - **Title:** 48px / 700 / ls 0.04em / `--text-accent-dark`, mb 40px
-- **Card:** border `--input-border`, r 20, pad 16, **без height** — stretch по найвищому в рядку, shadow `0 0 2px 0 #f75555`, gap 40
-  - desktop: max-width 321
-  - tablet: max-width 250
+- **Card:** border `--input-border`, r 16 (desk 20), pad 12 (desk 16), **без height** — stretch; shadow `0 0 2px 0 #f75555`
+  - **gap:** tablet `spaceBetween` 16; desktop 24
+  - **slide width:** 768→1024 fluid 220→250; 1024→1440 fluid 250→321 (на 1024 три картки + стрілки влізають)
   - mobile: max-width 345, 1 слайд
-- **Avatar:** wrap 80×80, padding 10 → img 60 (ассети 60×60), gap вправо 20 до імені, mb 10 до тексту
-- **H3:** 20px / 700 / `--text-accent-dark`, mb 8 до зірок
-- **Stars:** 24×24, gap 2
-- **Text:** 20px / 400 / lh 130% / `--text-primary`, **повний текст без clamp**
+- **Avatar:** tablet 52 у wrap 64; desk 60 у wrap 80
+- **H3:** tablet 16 / desk 20; **Text:** tablet 15 / desk 20; **Stars:** tablet 18 / desk 24
 - **Arrows:** спільний `SwiperArrow` — коло 30×30 + шеврон 9×15, stroke 2.67 / `--button-primary-default`; desktop/tablet — зліва і справа; mobile — під карткою, 40px від картки, **16px між стрілками**
 - **Copy:** зі скріну (Дар’я 25 років / Ілона 22 роки / Сергій 54 роки)
 

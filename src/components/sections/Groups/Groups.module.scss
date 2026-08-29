@@ -5,6 +5,10 @@
 
   &__title {
     @include landing-title($mb: 24px, $mb-lg: 40px, $from: tablet-lg, $align: center);
+
+    @include desktop {
+      text-align: left;
+    }
   }
 
   &__grid {

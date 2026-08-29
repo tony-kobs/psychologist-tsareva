@@ -44,7 +44,7 @@ export function Reviews() {
 
           <Swiper
             modules={[Navigation]}
-            spaceBetween={40}
+            spaceBetween={16}
             slidesPerView={1}
             rewind
             watchOverflow
@@ -52,7 +52,8 @@ export function Reviews() {
               swiperRef.current = swiper;
             }}
             breakpoints={{
-              768: { slidesPerView: "auto", spaceBetween: 40 },
+              768: { slidesPerView: "auto", spaceBetween: 16 },
+              1440: { slidesPerView: "auto", spaceBetween: 24 },
             }}
             className={styles.reviews__swiper}
           >

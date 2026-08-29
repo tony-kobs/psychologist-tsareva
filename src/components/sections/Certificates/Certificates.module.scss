@@ -5,6 +5,10 @@
     @include section-title;
     text-align: center;
     margin-bottom: 28px;
+
+    @include desktop {
+      text-align: left;
+    }
   }
 
   &__grid {
