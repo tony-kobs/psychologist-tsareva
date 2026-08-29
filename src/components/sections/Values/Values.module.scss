@@ -5,28 +5,25 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: fluid(12px, 17px, $bp-mobile-min, $bp-mobile);
-    justify-content: center;
+    justify-content: stretch;
     align-items: stretch;
     width: 100%;
-    max-width: fluid(345px, 345px, $bp-mobile-min, $bp-mobile);
+    max-width: var(--container-max);
     margin-inline: auto;
 
-    /* 393 → 1024: grow toward 2×428 + gap */
     @media (min-width: #{$bp-mobile}) {
-      max-width: fluid(345px, 896px, $bp-mobile, $bp-tablet-lg);
       gap: fluid(17px, 40px, $bp-mobile, $bp-tablet-lg);
     }
 
     @include tablet-lg {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      max-width: 896px;
       gap: 40px;
     }
 
     @include desktop {
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      max-width: 1140px;
       gap: 40px;
+      max-width: 1440px;
     }
   }
 

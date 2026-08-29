@@ -6,7 +6,6 @@ import {
   IconFacebookLight,
   IconFacebookTopbar,
   IconInstagramBrand,
-  IconInstagramLight,
   IconInstagramTopbar,
   IconTelegramBrand,
   IconTelegramLight,
@@ -41,7 +40,7 @@ const BRAND: Record<SocialKey, IconCmp> = {
 
 const LIGHT: Record<SocialKey, IconCmp> = {
   facebook: IconFacebookLight,
-  instagram: IconInstagramLight,
+  instagram: IconInstagramTopbar,
   viber: IconViberLight,
   telegram: IconTelegramLight,
 };

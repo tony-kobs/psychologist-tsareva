@@ -54,7 +54,9 @@ alwaysApply: true
 - Mobile 393: `hero-photo-mobile-1x/2x`, pad 36, tags 143 / gap 20, title 32, CTA 227×69, `hero-background-mobile.png` знизу-праворуч
 
 ### Values
-- Desktop: 255×357 (контентна висота, stretch), gap 40, 4 кол
+- Desktop: контейнер **max-width 1440**, 4 кол `1fr`, **gap 40**, картки на всю ширину контейнера (з pad); висота stretch
+- Tablet-lg: 2 кол, gap 40, width 100% контейнера
+- Mobile: 2 кол, width 100%
 - Tablet 1024+: 428×270 логіка / 2×2
 - Mobile: 164×375 логіка, pad 24×4; іконка wrap 100, glyph 60, title 20, text 18
 
@@ -131,7 +133,7 @@ alwaysApply: true
 - Фон `#c9785e` / `--bg-dark-brown`; текст `--text-button`
 - **Desktop:** 3 кол — `justify-content: space-between` (Категорії ближче до центру); tablet gap ~48px; mobile стек gap **40**, порядок Контакти → Графік → Категорії
 - **Titles:** 32 / 700 / `--font-family`
-- **Контакти:** gap 24; рядки 20px; іконки **48×48**; соц **40×40**, gap **64** (mobile space-between); Instagram light SVG з макета
+- **Контакти:** gap 24; рядки 20px; іконки **48×48**; соц **40×40**, gap **64** (mobile space-between); Instagram = `topbar-instagram` (білий скругл. квадрат + `#c9785e`)
 - **Категорії:** mb title→list 24; items 24 / Lato; перший **700**, інші 400; gap 8
 - **Графік:** clock **40×40**, gap 12; текст 24 Lato 400; лого 150×120 / ArtScript 48, mt 29, справа внизу (tablet+)
 - **Tagline:** mt 45, center, 20px
