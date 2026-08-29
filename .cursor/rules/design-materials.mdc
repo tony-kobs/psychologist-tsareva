@@ -74,7 +74,7 @@ alwaysApply: true
 - Фон `--form-bg`
 - Title: 48px + ls 0.04em (моб 32), center, `--text-accent-dark`
 - Картки: border `--input-border`, r 6, pad 24; desktop max-w 255 gap 40 / 4 кол; tablet 1024 max-w 428 / 2 кол; mobile max-w 345 / 1 кол; **рівна висота в рядку**
-- Іконка 120×120, mb 43.5px
+- Іконка 120×120, mb **24px** mobile / **43.5px** tablet+
 - H3 32 / `--text-accent-light`; опис 18 / `--text-primary`
 - Кнопка max-w 207, h 47, pad 12×24, 20/700, `--text-button`
 - Копія зі скріну: «Стосунки з собою», «Soft-Skills у житті та кар'єрі», «Індивідуальні коуч-сесії», «Гра «Віра в себе»»
