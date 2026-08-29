@@ -29,9 +29,13 @@
 
   --button-primary: #c8765b;
   --button-primary-default: #c8765b;
+  --button-primary-hover: #d98970;
   --button-secondary-border: #c8765b;
   --button-disabled: #e2dddc;
   --input-border: #ce8066;
+  --input-border-error: #e05c5c;
+  --input-bg: #ffffff;
+  --error-text: #e05c5c;
 
   --radius: 6px;
 
@@ -47,38 +51,56 @@
   --container-max: 1440px;
   --transition: 0.25s ease;
 
-  /* ——— Mobile: 24px side padding ——— */
-  --container-pad: 24px;
+  /*
+   * Fluid pads — exact at design refs (393 / 768 / 1024 / 1440),
+   * smooth between bands. Breakpoint values unchanged.
+   */
+  --container-pad: #{fluid(16px, 24px, $bp-mobile-min, $bp-mobile)};
 
-  --fs-body: #{fluid(16px, 18px, $bp-mobile-min, $bp-tablet)};
-  --fs-body-lg: #{fluid(16px, 18px, $bp-mobile-min, $bp-tablet)};
-  --fs-h1: #{fluid(26px, 40px, $bp-mobile-min, $bp-tablet)};
-  --fs-h2: #{fluid(24px, 32px, $bp-mobile-min, $bp-tablet)};
-  --fs-h3: #{fluid(18px, 22px, $bp-mobile-min, $bp-tablet)};
-  --fs-h4: #{fluid(17px, 20px, $bp-mobile-min, $bp-tablet)};
-  --fs-btn: #{fluid(16px, 20px, $bp-mobile-min, $bp-tablet)};
-  --fs-logo: #{fluid(34px, 45px, $bp-mobile-min, $bp-tablet)};
+  --fs-body: #{fluid(16px, 18px, $bp-mobile-min, $bp-mobile)};
+  --fs-body-lg: #{fluid(16px, 18px, $bp-mobile-min, $bp-mobile)};
+  --fs-h1: #{fluid(26px, 32px, $bp-mobile-min, $bp-mobile)};
+  --fs-h2: #{fluid(24px, 32px, $bp-mobile-min, $bp-mobile)};
+  --fs-h3: #{fluid(18px, 20px, $bp-mobile-min, $bp-mobile)};
+  --fs-h4: #{fluid(17px, 20px, $bp-mobile-min, $bp-mobile)};
+  --fs-btn: #{fluid(16px, 20px, $bp-mobile-min, $bp-mobile)};
+  --fs-logo: #{fluid(34px, 45px, $bp-mobile-min, $bp-mobile)};
   --ls-h1: 0.04em;
   --ls-h2: 0;
 
-  --icon-values: #{fluid(72px, 100px, $bp-mobile-min, $bp-tablet)};
-  --icon-values-glyph: #{fluid(44px, 60px, $bp-mobile-min, $bp-tablet)};
-  --icon-social: #{fluid(40px, 48px, $bp-mobile-min, $bp-tablet)};
-  --icon-social-glyph: #{fluid(28px, 36px, $bp-mobile-min, $bp-tablet)};
+  --icon-values: #{fluid(72px, 100px, $bp-mobile-min, $bp-mobile)};
+  --icon-values-glyph: #{fluid(44px, 60px, $bp-mobile-min, $bp-mobile)};
+  --icon-social: #{fluid(40px, 48px, $bp-mobile-min, $bp-mobile)};
+  --icon-social-glyph: #{fluid(28px, 36px, $bp-mobile-min, $bp-mobile)};
 
   --topbar-height: 48px;
-  --header-height: #{fluid(88px, 120px, $bp-mobile-min, $bp-tablet)};
-  --hero-height-m: #{fluid(620px, 772px, $bp-mobile-min, $bp-tablet)};
-  --hero-height-d: #{fluid(700px, 772px, $bp-mobile-min, $bp-tablet)};
+  --header-height: #{fluid(88px, 120px, $bp-mobile-min, $bp-mobile)};
+  --hero-height-m: #{fluid(620px, 772px, $bp-mobile-min, $bp-mobile)};
+  --hero-height-d: 772px;
 
-  --section-pad-y: 40px;
-  --section-pad-after-hero: 80px 40px;
-  --section-pad-before-footer: 40px 80px;
+  --section-pad-y: #{fluid(20px, 40px, $bp-mobile-min, $bp-tablet)};
+  --section-pad-after-hero: #{fluid(40px, 80px, $bp-mobile-min, $bp-tablet)}
+    #{fluid(20px, 40px, $bp-mobile-min, $bp-tablet)};
+  --section-pad-before-footer: #{fluid(20px, 40px, $bp-mobile-min, $bp-tablet)}
+    #{fluid(40px, 80px, $bp-mobile-min, $bp-tablet)};
 
-  @media (max-width: #{$bp-tablet - 1px}) {
-    --section-pad-y: 20px;
-    --section-pad-after-hero: 40px 20px;
-    --section-pad-before-footer: 20px 40px;
+  /* 393 → 768: ease toward tablet pad / type */
+  @media (min-width: #{$bp-mobile}) {
+    --container-pad: #{fluid(24px, 64px, $bp-mobile, $bp-tablet)};
+    --fs-body: #{fluid(18px, 18px, $bp-mobile, $bp-tablet)};
+    --fs-body-lg: #{fluid(18px, 18px, $bp-mobile, $bp-tablet)};
+    --fs-h1: #{fluid(32px, 40px, $bp-mobile, $bp-tablet)};
+    --fs-h2: 32px;
+    --fs-h3: #{fluid(20px, 22px, $bp-mobile, $bp-tablet)};
+    --fs-h4: 20px;
+    --fs-btn: 20px;
+    --fs-logo: 45px;
+    --icon-values: 100px;
+    --icon-values-glyph: 60px;
+    --icon-social: 48px;
+    --icon-social-glyph: 36px;
+    --header-height: 120px;
+    --hero-height-m: 772px;
   }
 
   --gradient-section: linear-gradient(
@@ -91,15 +113,15 @@
   );
 }
 
-/* ——— Tablet: 64px side padding ——— */
+/* ——— Tablet 768: pad 64; type eases toward desktop ——— */
 @media (min-width: #{$bp-tablet}) {
   :root {
     --container-pad: 64px;
 
-    --fs-body: #{fluid(18px, 18px, $bp-tablet, $bp-desktop)};
+    --fs-body: 18px;
     --fs-body-lg: #{fluid(18px, 20px, $bp-tablet, $bp-desktop)};
     --fs-h1: #{fluid(40px, 48px, $bp-tablet, $bp-desktop)};
-    --fs-h2: #{fluid(32px, 32px, $bp-tablet, $bp-desktop)};
+    --fs-h2: 32px;
     --fs-h3: #{fluid(22px, 24px, $bp-tablet, $bp-desktop)};
     --fs-h4: 20px;
     --fs-btn: 20px;
@@ -107,19 +129,20 @@
     --ls-h1: 0.06em;
     --ls-h2: 0.04em;
 
-    --icon-values: 100px;
-    --icon-values-glyph: 60px;
-    --icon-social: 48px;
-    --icon-social-glyph: 36px;
-
-    --topbar-height: 48px;
-    --header-height: 120px;
-    --hero-height-m: 772px;
-    --hero-height-d: 772px;
+    --section-pad-y: 40px;
+    --section-pad-after-hero: 80px 40px;
+    --section-pad-before-footer: 40px 80px;
   }
 }
 
-/* ——— Desktop: 150px side padding ——— */
+/* ——— Tablet-lg 1024 → Desktop 1440: pad 64 → 150 ——— */
+@media (min-width: #{$bp-tablet-lg}) {
+  :root {
+    --container-pad: #{fluid(64px, 150px, $bp-tablet-lg, $bp-desktop)};
+  }
+}
+
+/* ——— Desktop 1440+ ——— */
 @media (min-width: #{$bp-desktop}) {
   :root {
     --container-pad: 150px;
@@ -131,8 +154,6 @@
     --fs-h3: #{fluid(24px, 26px, $bp-desktop, $bp-desktop-max)};
     --fs-logo: #{fluid(45px, 52px, $bp-desktop, $bp-desktop-max)};
     --ls-h1: 0.08em;
-
-    --hero-height-d: 772px;
   }
 }
 

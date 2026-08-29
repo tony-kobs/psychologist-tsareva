@@ -13,6 +13,7 @@
   font-weight: 700;
   line-height: 1.25;
   text-align: center;
+  cursor: pointer;
   transition:
     background-color var(--transition),
     color var(--transition),
@@ -29,17 +30,28 @@
     outline-offset: 2px;
   }
 
-  &--primary {
-    background-color: var(--button-primary);
-    color: var(--text-button);
-    border: 2px solid var(--button-primary);
+  &:disabled,
+  &[aria-disabled="true"] {
+    background-color: var(--button-disabled);
+    border-color: var(--button-disabled);
+    color: var(--text-primary);
+    cursor: not-allowed;
+    transform: none;
+    pointer-events: none;
+  }
 
-    &:hover {
-      background-color: var(--text-accent-dark);
-      border-color: var(--text-accent-dark);
+  &--primary {
+    background-color: var(--button-primary-default);
+    color: var(--text-button);
+    border: 2px solid var(--button-primary-default);
+
+    &:hover:not(:disabled):not([aria-disabled="true"]) {
+      background-color: var(--button-primary-hover);
+      border-color: var(--button-primary-hover);
+      color: var(--text-button);
     }
 
-    &:active {
+    &:active:not(:disabled):not([aria-disabled="true"]) {
       transform: translateY(1px);
     }
   }
@@ -49,10 +61,14 @@
     color: var(--button-secondary-border);
     border: 2px solid var(--button-secondary-border);
 
-    &:hover {
+    &:hover:not(:disabled):not([aria-disabled="true"]) {
       background-color: var(--card-bg-hover);
-      color: var(--text-accent-dark);
-      border-color: var(--text-accent-dark);
+      color: var(--button-secondary-border);
+      border-color: var(--button-secondary-border);
+    }
+
+    &:active:not(:disabled):not([aria-disabled="true"]) {
+      transform: translateY(1px);
     }
   }
 

@@ -4,7 +4,17 @@ import styles from "./Location.module.scss";
 
 export function Location() {
   return (
-    <section className={`section ${styles.location}`} aria-labelledby="location-title">
+    <section
+      className={`section ${styles.location}`}
+      aria-labelledby="location-title"
+    >
+      <img
+        src="/images/decor-map-leaf.svg"
+        alt=""
+        className={styles.location__decor}
+        aria-hidden="true"
+      />
+
       <div className={`container ${styles.location__inner}`}>
         <div className={styles.location__content}>
           <h2 id="location-title" className={styles.location__title}>
@@ -15,14 +25,15 @@ export function Location() {
             {PHONE}
           </a>
           <Button href="#contacts" className={styles.location__cta}>
-            {LOCATION.cta}
+            <span className={styles.location__ctaFull}>{LOCATION.cta}</span>
+            <span className={styles.location__ctaShort}>{LOCATION.ctaShort}</span>
           </Button>
         </div>
 
         <div className={styles.location__map}>
           <iframe
-            title="Карта кабінету — Київ"
-            src="https://maps.google.com/maps?q=Kyiv%20Khreshchatyk&t=&z=14&ie=UTF8&iwloc=&output=embed"
+            title={`Карта кабінету — ${LOCATION.address}`}
+            src="https://maps.google.com/maps?q=Kharkiv&t=&z=14&ie=UTF8&iwloc=&output=embed"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             allowFullScreen

@@ -9,7 +9,7 @@ import { Help } from "@/components/sections/Help/Help";
 import { Groups } from "@/components/sections/Groups/Groups";
 import { Certificates } from "@/components/sections/Certificates/Certificates";
 import { Game } from "@/components/sections/Game/Game";
-// import { Reviews } from "@/components/sections/Reviews/Reviews";
+import { Reviews } from "@/components/sections/Reviews/Reviews";
 import { Contacts } from "@/components/sections/Contacts/Contacts";
 import { Gallery } from "@/components/sections/Gallery/Gallery";
 import { Location } from "@/components/sections/Location/Location";
@@ -28,8 +28,7 @@ export default function HomePage() {
         <Groups />
         <Certificates />
         <Game />
-        {/* NEXT SESSION: pixel-pass Reviews — continue from here */}
-        {/* <Reviews /> */}
+        <Reviews />
         <Contacts />
         <Gallery />
         <Location />

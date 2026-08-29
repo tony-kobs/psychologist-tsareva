@@ -25,19 +25,16 @@ alwaysApply: true
 ## Верстка — завжди
 
 - Фіксована ширина з макету → **`max-width`**, не голий `width` (на всьому проєкті).
-- Висота карток у рядку: `grid` + `align-items: stretch` + `height: 100%`. **Без** `min-height` / фіксованого `height` як «паркану». Кнопка вниз через `margin-top: auto`.
+- **Ніколи не ставити фіксовану `height` на картки/контент-блоки.** Висота гумова по вмісту; в рядку всі однакові через `align-items: stretch` + `height: 100%` (grid / swiper-wrapper). Кнопка вниз — `margin-top: auto`.
 - Фон секції як body, якщо не сказано інакше: `background-color: var(--form-bg)`. Не чіпати `section--alt`, якщо макет бежевий як сторінка.
+- Спільні міксини (`src/styles/_mixins.scss`): `landing-title` (+ `$mb-lg`, `$color`), `landing-title-fixed-48`, `landing-cta`, `cta-label-pair`, `section-gradient-bg`, `decor-leaf`, `swiper-arrows-row`, `swiper-track`, `swiper-arrows-nav-order` — DRY без зміни візуалу.
 - Глобальні `img { max-width: 100%; height: auto }` ламають декор і іконки → на цих `img` ставити `max-width: none` і явну висоту.
-- Outline-кнопка (як About / Game CTA): `background: var(--text-button)`, `border: 2px solid var(--button-primary-default)`, **текст** `color: var(--button-primary-default)` (не білий на білому).
-- Primary-кнопка: `background` + `border` `--button-primary-default`, текст `--text-button`.
+- **UI states (`components.jpg`):** primary hover `#d98970` / disabled `#e2dddc`; outline hover `--card-bg-hover` (peach); картки Values/Groups/Help/Reviews — hover peach; форма — focus, error (`*…`), success (check + «Повідомлення відправлено»); SwiperArrow hover fill.
 
 ## Breakpoints
 
-- mobile: `<768` (референс 393)
-- tablet: `768–1439`; багато карток/сіток з **`1024` (`tablet-lg`)**
-- desktop: `≥1440`
-
-Глобальні паддінги секцій (`globals.scss`): після Hero 80/40 (моб 40/20); звичайні 40/40 (моб 20/20); Location перед футером 40/80 (моб 20/40). Окремі секції можуть перевизначити (Game — 40/40 скрізь).
+- Breakpoints **без змін**: mobile `<768` (393), tablet `768–1439` / `tablet-lg` 1024, desktop `≥1440`.
+- **Гумова верстка між бендами** (`fluid()` у `globals` + секціях): pad 16→24 (320–393), 24→64 (393–768), hold 64 до 1024, 64→150 (1024–1440); section pads; `landing-title` / `landing-cta` плавно до 48/32; картки/gap/Hero/Gallery/Values/About/Help/Groups/Contacts/Location/Game/Footer/BackToTop. На 393 / 1024 / 1440 — значення макета.
 
 ## Декор (листки)
 
@@ -86,6 +83,59 @@ alwaysApply: true
 - Title 32/700; subtitle 24/700 `--second-family` mb 54 desk; опис 20/400 lh 130% gap 24, 54 до кнопки
 - CTA outline 780×69 pad 16×36
 
+### Reviews (`#reviews`)
+- Фон `--form-bg`
+- **Title:** 48px / 700 / ls 0.04em / `--text-accent-dark`, mb 40px
+- **Card:** border `--input-border`, r 20, pad 16, **без height** — stretch по найвищому в рядку, shadow `0 0 2px 0 #f75555`, gap 40
+  - desktop: max-width 321
+  - tablet: max-width 250
+  - mobile: max-width 345, 1 слайд
+- **Avatar:** wrap 80×80, padding 10 → img 60 (ассети 60×60), gap вправо 20 до імені, mb 10 до тексту
+- **H3:** 20px / 700 / `--text-accent-dark`, mb 8 до зірок
+- **Stars:** 24×24, gap 2
+- **Text:** 20px / 400 / lh 130% / `--text-primary`, **повний текст без clamp**
+- **Arrows:** спільний `SwiperArrow` — коло 30×30 + шеврон 9×15, stroke 2.67 / `--button-primary-default`; desktop/tablet — зліва і справа; mobile — під карткою, 40px від картки, **16px між стрілками**
+- **Copy:** зі скріну (Дар’я 25 років / Ілона 22 роки / Сергій 54 роки)
+
+### Contacts (`#contacts`)
+- **Background:** той самий градієнт, що Game (`#eddacd` → … 50%)
+- **Decor:** `decor-form-leaf.svg` — лівий край; desktop `bottom: 0`; tablet `top: 0` (як скрін 2); opacity ~0.55 multiply
+- **Info gaps:** desktop/tablet 40px; mobile 16px (title→text→phone→socials)
+- **Title:** 48px / 700 / ls 0.04em (mobile 32); `--text-accent-dark`
+- **Desc + phone:** `--second-family` 24px (mobile 20) / `--text-primary`
+- **Socials:** 48×48, gap 40 (desktop/tablet); mobile `space-between` на всю ширину
+- **Form:** border `--input-border`, r 20, pad 24, bg `--form-bg`; max-width desk 528 / tablet 408 / mobile 100%; **без фікс. height**
+- **Inputs:** width 100%, h 43, pad 10, r 4, bg `--input-bg` (#fff); textarea h 81; gap 22
+- **Submit disabled:** bg `--button-disabled`, текст 32px/700 `--text-primary`, h 69, pad 16×36, r 6; увімкнений → primary
+- Mobile: текст по центру, відступ до форми 24px
+
+### Gallery (`#gallery` / section)
+- Фон `--form-bg`; **pad:** desktop 120 / tablet 80 / mobile 64
+- **Title:** 48px / 700 / ls 0.04em (mobile 32), mb 40
+- **Photos:** r 6, height 300; desk max-w 332 / tablet 250 / mobile 345; gap 24
+- **Arrows:** той самий `SwiperArrow`, як Reviews — зліва/справа (gap 16 до фото); mobile під фото, 16px між стрілками
+- Без pagination dots
+
+### Location (мапа)
+- **Background:** той самий градієнт, що Game/Contacts
+- **Decor:** один `decor-map-leaf` по центру — `rotate(45deg)`, `translate(-100px, 40px)`
+- **Title:** desk 48 / ls 0.04em; tablet+mobile 32; `--text-accent-dark`
+- **Desc:** desk `--second-family` 24; tablet `--font-family` 20; mobile 20
+- **Phone:** `--second-family` 700 / 24 (mobile 20)
+- **CTA:** primary, h 69, pad 16×36, r 6, текст 32 (`Записатися` на mobile); max-w desk 487 / tablet 428 / mobile 100%
+- **Gap** content→map: 40 (tablet+)
+- **Map:** r 20; desk max-w 550 h 445; tablet 428×445; mobile 100% × ~300
+
+### Footer
+- Фон `#c9785e` / `--bg-dark-brown`; текст `--text-button`
+- **Desktop:** 3 кол — `justify-content: space-between` (Категорії ближче до центру); tablet gap ~48px; mobile стек gap **40**, порядок Контакти → Графік → Категорії
+- **Titles:** 32 / 700 / `--font-family`
+- **Контакти:** gap 24; рядки 20px; іконки **48×48**; соц **40×40**, gap **64** (mobile space-between); Instagram light SVG з макета
+- **Категорії:** mb title→list 24; items 24 / Lato; перший **700**, інші 400; gap 8
+- **Графік:** clock **40×40**, gap 12; текст 24 Lato 400; лого 150×120 / ArtScript 48, mt 29, справа внизу (tablet+)
+- **Tagline:** mt 45, center, 20px
+- **BackToTop:** SVG 80×80 fixed
+
 ### Інше вже чіпали раніше
 - Header/Menu: tablet = desktop nav
 - Footer: 3 колонки на tablet
@@ -94,8 +144,8 @@ alwaysApply: true
 
 ---
 
-## Наступна сесія (2026-08-29)
+## Наступна секція
 
-**Почати з `#reviews` (закоментовано в `page.tsx`).** Далі за чергою, якщо не скажуть інакше: Certificates (якщо ще не під макет), Contacts, Gallery, Location/Footer дотяг.
+Footer зроблено. Далі — дрібні дотяги / Certificates, якщо попросять.
 
-Не починати нову секцію, поки користувач не дав скрін + спеки. Знову: матеріали → Figma → код.
+Не починати нову секцію без скріну + спеків. Матеріали → Figma → код.

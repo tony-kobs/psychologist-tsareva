@@ -24,41 +24,43 @@
   }
 
   &__title {
-    margin: 0 0 24px;
-    font-family: var(--font-family);
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 1.05;
-    color: var(--text-accent-dark);
-
-    @include tablet-lg {
-      margin-bottom: 40px;
-      font-size: 48px;
-      letter-spacing: 0.04em;
-    }
+    @include landing-title($mb: 24px, $mb-lg: 40px, $from: tablet-lg, $lh: 1.05);
   }
 
   &__inner {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: fluid(24px, 32px, $bp-mobile-min, $bp-mobile);
+
+    @media (min-width: #{$bp-mobile}) {
+      gap: fluid(32px, 60px, $bp-mobile, $bp-tablet-lg);
+    }
 
     @include tablet-lg {
       flex-direction: row;
-      gap: 60px;
+      gap: fluid(40px, 60px, $bp-tablet-lg, $bp-desktop);
       align-items: flex-start;
+    }
+
+    @include desktop {
+      gap: 60px;
     }
   }
 
   &__media {
     flex-shrink: 0;
-    width: 345px;
-    max-width: 100%;
+    width: 100%;
+    max-width: fluid(300px, 345px, $bp-mobile-min, $bp-mobile);
     border-radius: 6px;
     overflow: hidden;
 
+    @media (min-width: #{$bp-mobile}) {
+      max-width: fluid(345px, 418px, $bp-mobile, $bp-tablet-lg);
+    }
+
     @include tablet-lg {
-      width: 418px;
+      width: fluid(418px, 391px, $bp-tablet-lg, $bp-desktop);
+      max-width: 100%;
     }
 
     @include desktop {
@@ -69,12 +71,12 @@
   &__image {
     display: block;
     width: 100%;
-    height: 371px;
+    height: fluid(320px, 371px, $bp-mobile-min, $bp-mobile);
     object-fit: cover;
     border-radius: 6px;
 
     @include tablet-lg {
-      height: 526px;
+      height: fluid(526px, 402px, $bp-tablet-lg, $bp-desktop);
     }
 
     @include desktop {
@@ -93,9 +95,13 @@
     margin: 0 0 16px;
     font-family: var(--second-family);
     font-weight: 700;
-    font-size: 24px;
+    font-size: fluid(20px, 24px, $bp-mobile-min, $bp-mobile);
     line-height: 1.3;
     color: var(--text-accent-dark);
+
+    @media (min-width: #{$bp-mobile}) {
+      font-size: fluid(24px, 32px, $bp-mobile, $bp-tablet-lg);
+    }
 
     @include tablet-lg {
       max-width: 318px;
@@ -115,7 +121,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-bottom: 24px;
+    margin-bottom: fluid(20px, 24px, $bp-mobile-min, $bp-mobile);
     width: 100%;
 
     @include tablet-lg {
@@ -132,40 +138,27 @@
     margin: 0;
     font-family: var(--second-family);
     font-weight: 400;
-    font-size: 24px;
+    font-size: fluid(20px, 24px, $bp-mobile-min, $bp-mobile);
     line-height: 1.35;
     color: var(--text-accent-dark);
   }
 
   &__cta {
-    box-sizing: border-box;
-    width: 345px;
-    max-width: 100%;
-    height: 69px;
-    min-height: 69px;
-    padding: 16px 36px;
-    border: 2px solid var(--button-primary-default);
-    border-radius: 6px;
-    background: var(--text-button);
-    font-family: var(--font-family);
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 1.25;
-    color: var(--button-primary-default);
+    @include landing-cta($variant: outline, $fs: 24px);
+    width: 100%;
+    max-width: fluid(300px, 345px, $bp-mobile-min, $bp-mobile);
+
+    @media (min-width: #{$bp-mobile}) {
+      max-width: fluid(345px, 418px, $bp-mobile, $bp-tablet-lg);
+    }
 
     @include tablet-lg {
-      width: 418px;
-      font-size: 32px;
+      width: fluid(418px, 688px, $bp-tablet-lg, $bp-desktop);
+      max-width: 100%;
     }
 
     @include desktop {
       width: 688px;
-    }
-
-    &:hover {
-      background: var(--card-bg-hover);
-      color: var(--text-accent-dark);
-      border-color: var(--text-accent-dark);
     }
   }
 }

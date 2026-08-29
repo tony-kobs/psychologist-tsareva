@@ -3,18 +3,29 @@
 .values {
   &__grid {
     display: grid;
-    grid-template-columns: repeat(2, 164px);
-    gap: 17px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: fluid(12px, 17px, $bp-mobile-min, $bp-mobile);
     justify-content: center;
     align-items: stretch;
+    width: 100%;
+    max-width: fluid(345px, 345px, $bp-mobile-min, $bp-mobile);
+    margin-inline: auto;
+
+    /* 393 → 1024: grow toward 2×428 + gap */
+    @media (min-width: #{$bp-mobile}) {
+      max-width: fluid(345px, 896px, $bp-mobile, $bp-tablet-lg);
+      gap: fluid(17px, 40px, $bp-mobile, $bp-tablet-lg);
+    }
 
     @include tablet-lg {
-      grid-template-columns: repeat(2, 428px);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: 896px;
       gap: 40px;
     }
 
     @include desktop {
-      grid-template-columns: repeat(4, 255px);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      max-width: 1140px;
       gap: 40px;
     }
   }
@@ -27,18 +38,18 @@
     box-sizing: border-box;
     width: 100%;
     min-height: 100%;
-    padding: 24px 4px;
+    padding: 24px fluid(4px, 4px, $bp-mobile-min, $bp-mobile);
     border: 1px solid var(--input-border);
     border-radius: 6px;
     background-color: transparent;
     text-align: center;
     transition: background-color var(--transition);
 
-    @include tablet-lg {
-      padding: 24px;
+    @media (min-width: #{$bp-mobile}) {
+      padding: 24px fluid(4px, 24px, $bp-mobile, $bp-tablet-lg);
     }
 
-    @include desktop {
+    @include tablet-lg {
       padding: 24px;
     }
 
@@ -51,16 +62,16 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
-    height: 100px;
+    width: var(--icon-values);
+    height: var(--icon-values);
     border-radius: 50px;
     background-color: var(--card-bg-hover);
     flex-shrink: 0;
 
     img {
       display: block;
-      width: 60px;
-      height: 60px;
+      width: var(--icon-values-glyph);
+      height: var(--icon-values-glyph);
       max-width: none;
       object-fit: contain;
     }
@@ -78,7 +89,7 @@
   &__title {
     font-family: var(--font-family);
     font-weight: 700;
-    font-size: 20px;
+    font-size: fluid(18px, 20px, $bp-mobile-min, $bp-mobile);
     line-height: 1.2;
     color: var(--text-primary);
     margin: 0;
@@ -87,7 +98,7 @@
   &__text {
     font-family: var(--font-family);
     font-weight: 400;
-    font-size: 18px;
+    font-size: fluid(16px, 18px, $bp-mobile-min, $bp-mobile);
     line-height: 1.35;
     text-align: center;
     color: var(--text-primary);

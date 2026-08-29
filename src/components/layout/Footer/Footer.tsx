@@ -20,7 +20,7 @@ export function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.footer__grid}`}>
-        <div className={styles.footer__col}>
+        <div className={`${styles.footer__col} ${styles["footer__col--contacts"]}`}>
           <h3 className={styles.footer__title}>Контакти</h3>
 
           <ul className={styles.footer__contacts}>
@@ -51,7 +51,7 @@ export function Footer() {
           />
         </div>
 
-        <div className={styles.footer__col}>
+        <div className={`${styles.footer__col} ${styles["footer__col--nav"]}`}>
           <h3 className={styles.footer__title}>Категорії</h3>
           <ul className={styles.footer__nav}>
             {FOOTER_NAV.map((link) => (
@@ -65,7 +65,7 @@ export function Footer() {
         <div className={`${styles.footer__col} ${styles["footer__col--schedule"]}`}>
           <h3 className={styles.footer__title}>Графік роботи</h3>
           <div className={styles.footer__schedule}>
-            <IconFooterClock className={styles.footer__icon} />
+            <IconFooterClock className={styles.footer__clock} />
             <ul className={styles.footer__hours}>
               {FOOTER.schedule.map((item) => (
                 <li key={item.days}>

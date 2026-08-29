@@ -3,29 +3,18 @@
 .game {
   position: relative;
   overflow: hidden;
-  padding-block: 40px;
-  background: linear-gradient(
-    90deg,
-    #eddacd 0%,
-    rgba(237, 218, 205, 0.6) 16.57%,
-    rgba(237, 218, 205, 0.8) 32.84%,
-    rgba(237, 218, 205, 0.2) 50%
-  );
+  padding-block: fluid(32px, 40px, $bp-mobile-min, $bp-mobile);
+  @include section-gradient-bg;
 
   &__decor {
-    position: absolute;
+    @include decor-leaf(0.55);
     left: 0;
     top: 50%;
     transform: translateY(-50%);
     width: min(242px, 62vw);
     height: auto;
-    max-width: none;
     object-fit: contain;
     object-position: left center;
-    opacity: 0.55;
-    mix-blend-mode: multiply;
-    pointer-events: none;
-    z-index: 0;
 
     @include tablet-lg {
       width: min(280px, 22vw);
@@ -37,7 +26,7 @@
     z-index: 1;
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    gap: fluid(40px, 60px, $bp-mobile-min, $bp-mobile);
     align-items: center;
 
     @include tablet-lg {
@@ -50,7 +39,7 @@
   &__media {
     flex-shrink: 0;
     width: 100%;
-    max-width: 345px;
+    max-width: fluid(300px, 345px, $bp-mobile-min, $bp-mobile);
     overflow: hidden;
     border-radius: 6px;
 
@@ -61,14 +50,14 @@
     img {
       display: block;
       width: 100%;
-      max-width: 345px;
-      height: 345px;
+      max-width: fluid(300px, 345px, $bp-mobile-min, $bp-mobile);
+      height: fluid(300px, 345px, $bp-mobile-min, $bp-mobile);
       object-fit: cover;
       border-radius: 6px;
 
       @include tablet-lg {
         max-width: 299px;
-        height: 401px;
+        height: fluid(401px, 431px, $bp-tablet-lg, $bp-desktop);
       }
 
       @include desktop {
@@ -93,12 +82,7 @@
   }
 
   &__title {
-    margin: 0 0 8px;
-    font-family: var(--font-family);
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 1.15;
-    color: var(--text-accent-dark);
+    @include landing-title($size-sm: 32px, $size-lg: 32px, $from: none, $mb: 8px);
   }
 
   &__subtitle {
@@ -143,23 +127,8 @@
   }
 
   &__cta {
-    box-sizing: border-box;
+    @include landing-cta($variant: outline, $fs: 20px);
     width: 100%;
     max-width: 780px;
-    height: 69px;
-    min-height: 69px;
-    padding: 16px 36px;
-    border: 2px solid var(--button-primary-default);
-    border-radius: 6px;
-    background: var(--text-button);
-    font-family: var(--font-family);
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 1.25;
-    color: var(--button-primary-default);
-
-    @include tablet-lg {
-      font-size: 32px;
-    }
   }
 }

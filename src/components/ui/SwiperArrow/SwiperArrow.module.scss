@@ -1,0 +1,54 @@
+.arrow {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--button-primary-default);
+  cursor: pointer;
+  transition:
+    color var(--transition),
+    background-color var(--transition);
+
+  &:hover {
+    color: var(--text-button);
+  }
+
+  &:hover &__circle path {
+    fill: var(--button-primary-default);
+    stroke: var(--button-primary-default);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--text-accent-dark);
+    outline-offset: 2px;
+    border-radius: 50%;
+  }
+
+  &__circle {
+    display: block;
+    width: 30px;
+    height: 30px;
+
+    path {
+      transition:
+        fill var(--transition),
+        stroke var(--transition);
+    }
+  }
+
+  &__chevron {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 9px;
+    height: 15px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+}

@@ -29,6 +29,261 @@
   padding-inline: var(--container-pad);
 }
 
+/* ——— Shared landing tokens (pixel-pass) ——— */
+
+/** Peach section gradient (Game / Contacts / Location) */
+@mixin section-gradient-bg {
+  background: linear-gradient(
+    90deg,
+    #eddacd 0%,
+    rgba(237, 218, 205, 0.6) 16.57%,
+    rgba(237, 218, 205, 0.8) 32.84%,
+    rgba(237, 218, 205, 0.2) 50%
+  );
+}
+
+/** Decorative leaf / plant image defaults */
+@mixin decor-leaf($opacity: 0.55) {
+  position: absolute;
+  max-width: none;
+  pointer-events: none;
+  z-index: 0;
+  opacity: $opacity;
+  mix-blend-mode: multiply;
+}
+
+/**
+ * Section H2 — fluid 32 → 48 toward $from (exact at band ends)
+ * $from: tablet | tablet-lg | desktop | none (fixed size)
+ * $mb-lg: optional margin-bottom eased to the same band
+ */
+@mixin landing-title(
+  $size-sm: 32px,
+  $size-lg: 48px,
+  $from: tablet-lg,
+  $lh: 1.15,
+  $mb: 0,
+  $mb-lg: null,
+  $align: null,
+  $color: var(--text-accent-dark)
+) {
+  margin: 0;
+  margin-bottom: $mb;
+  font-family: var(--font-family);
+  font-weight: 700;
+  line-height: $lh;
+  color: $color;
+
+  @if $align != null {
+    text-align: $align;
+  }
+
+  @if $from == none {
+    font-size: $size-sm;
+
+    @if $size-sm == 48px {
+      letter-spacing: 0.04em;
+    }
+  } @else if $from == tablet {
+    /* 393 → 768 */
+    font-size: fluid($size-sm, $size-lg, $bp-mobile, $bp-tablet);
+
+    @if $mb-lg != null {
+      margin-bottom: fluid($mb, $mb-lg, $bp-mobile, $bp-tablet);
+    }
+
+    @include tablet {
+      letter-spacing: 0.04em;
+    }
+  } @else if $from == tablet-lg {
+    /* 768 → 1024 (hold $size-sm below tablet) */
+    font-size: fluid($size-sm, $size-lg, $bp-tablet, $bp-tablet-lg);
+
+    @if $mb-lg != null {
+      margin-bottom: fluid($mb, $mb-lg, $bp-tablet, $bp-tablet-lg);
+    }
+
+    @include tablet-lg {
+      letter-spacing: 0.04em;
+    }
+  } @else if $from == desktop {
+    /* 1024 → 1440 */
+    font-size: fluid($size-sm, $size-lg, $bp-tablet-lg, $bp-desktop);
+
+    @if $mb-lg != null {
+      margin-bottom: fluid($mb, $mb-lg, $bp-tablet-lg, $bp-desktop);
+    }
+
+    @include desktop {
+      letter-spacing: 0.04em;
+    }
+  }
+}
+
+/** Title that is 48px on all breakpoints (Reviews) */
+@mixin landing-title-fixed-48($mb: 40px) {
+  @include landing-title($size-sm: 48px, $size-lg: 48px, $from: none, $mb: $mb);
+  letter-spacing: 0.04em;
+}
+
+/**
+ * Primary / outline CTA shared shell — font-size fluids toward $from
+ * States from components kit: hover + disabled
+ * $variant: filled | outline
+ */
+@mixin landing-cta(
+  $variant: filled,
+  $fs: 24px,
+  $fs-lg: 32px,
+  $from: tablet-lg,
+  $pad: 16px 36px,
+  $height: 69px
+) {
+  box-sizing: border-box;
+  height: $height;
+  min-height: $height;
+  padding: $pad;
+  border-radius: 6px;
+  font-family: var(--font-family);
+  font-weight: 700;
+  line-height: 1.25;
+  cursor: pointer;
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    border-color var(--transition);
+
+  @if $variant == outline {
+    border: 2px solid var(--button-primary-default);
+    background: var(--text-button);
+    color: var(--button-primary-default);
+
+    &:hover:not(:disabled) {
+      background: var(--card-bg-hover);
+      border-color: var(--button-primary-default);
+      color: var(--button-primary-default);
+    }
+  } @else {
+    border: 2px solid var(--button-primary-default);
+    background: var(--button-primary-default);
+    color: var(--text-button);
+
+    &:hover:not(:disabled) {
+      background: var(--button-primary-hover);
+      border-color: var(--button-primary-hover);
+      color: var(--text-button);
+    }
+  }
+
+  &:disabled {
+    background: var(--button-disabled);
+    border-color: var(--button-disabled);
+    color: var(--text-primary);
+    cursor: not-allowed;
+  }
+
+  @if $from == none {
+    font-size: $fs;
+  } @else if $from == tablet {
+    font-size: fluid($fs, $fs-lg, $bp-mobile, $bp-tablet);
+  } @else if $from == tablet-lg {
+    font-size: fluid($fs, $fs-lg, $bp-tablet, $bp-tablet-lg);
+  } @else if $from == desktop {
+    font-size: fluid($fs, $fs-lg, $bp-tablet-lg, $bp-desktop);
+  } @else {
+    font-size: $fs;
+  }
+}
+
+/**
+ * Responsive CTA label pair — include inside section root
+ * generates &__ctaFull / &__ctaShort
+ */
+@mixin cta-label-pair($from: tablet) {
+  &__ctaFull {
+    display: none;
+
+    @if $from == tablet {
+      @include tablet {
+        display: inline;
+      }
+    } @else if $from == tablet-lg {
+      @include tablet-lg {
+        display: inline;
+      }
+    }
+  }
+
+  &__ctaShort {
+    display: inline;
+
+    @if $from == tablet {
+      @include tablet {
+        display: none;
+      }
+    } @else if $from == tablet-lg {
+      @include tablet-lg {
+        display: none;
+      }
+    }
+  }
+}
+
+@mixin swiper-arrows-mobile-order {
+  @media (max-width: #{$bp-tablet - 1px}) {
+    flex: 0 0 100%;
+    order: 1;
+  }
+}
+
+@mixin swiper-arrows-nav-order($order: 2) {
+  @media (max-width: #{$bp-tablet - 1px}) {
+    order: $order;
+  }
+}
+
+/** Swiper row: arrows under on mobile, flanks on tablet+ */
+@mixin swiper-arrows-row($mobile-gap-y: 40px, $mobile-gap-x: 16px, $side-gap: 16px) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $mobile-gap-y;
+
+  @include tablet {
+    flex-direction: row;
+    align-items: center;
+    gap: $side-gap;
+  }
+
+  @media (max-width: #{$bp-tablet - 1px}) {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    column-gap: $mobile-gap-x;
+    row-gap: $mobile-gap-y;
+  }
+}
+
+/** Swiper viewport in arrow row (Gallery / Reviews) */
+@mixin swiper-track($max-sm: 345px) {
+  width: 100%;
+  max-width: $max-sm;
+  margin: 0;
+
+  @include tablet {
+    max-width: none;
+    flex: 1;
+    min-width: 0;
+  }
+
+  @include swiper-arrows-mobile-order;
+}
+
+@mixin img-fixed {
+  max-width: none;
+}
+
 @mixin heading-h1 {
   font-family: var(--font-heading);
   font-weight: 700;

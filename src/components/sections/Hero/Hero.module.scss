@@ -124,12 +124,12 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding-block: 36px;
+    padding-block: fluid(28px, 36px, $bp-mobile-min, $bp-mobile);
     min-width: 0;
 
     @include tablet {
-      gap: 80px;
-      padding-block: 84px;
+      gap: fluid(40px, 80px, $bp-tablet, $bp-desktop);
+      padding-block: fluid(64px, 84px, $bp-tablet, $bp-desktop);
     }
 
     @include desktop {
@@ -142,7 +142,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
+    gap: fluid(16px, 20px, $bp-mobile-min, $bp-mobile);
     position: relative;
     z-index: 3;
     max-width: 100%;
@@ -153,7 +153,7 @@
     @include tablet {
       flex-direction: row;
       flex-wrap: nowrap;
-      gap: 40px;
+      gap: fluid(40px, 80px, $bp-tablet, $bp-desktop);
     }
 
     @include desktop {
@@ -166,15 +166,17 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 143px;
+    width: fluid(120px, 143px, $bp-mobile-min, $bp-mobile);
+    max-width: 100%;
     min-height: 0;
-    padding: 8px 4px;
+    padding: fluid(6px, 8px, $bp-mobile-min, $bp-mobile)
+      fluid(4px, 4px, $bp-mobile-min, $bp-mobile);
     border: 0.2px solid var(--text-accent-dark);
     border-radius: 6px;
     background: linear-gradient(180deg, #ffc7b5 0%, #c9785e 100%);
     color: var(--text-button);
     font-family: var(--second-family);
-    font-size: 20px;
+    font-size: fluid(18px, 20px, $bp-mobile-min, $bp-mobile);
     font-weight: 400;
     line-height: 1;
     text-align: center;
@@ -183,8 +185,9 @@
 
     @include tablet {
       width: auto;
+      max-width: none;
       padding: 12px 24px;
-      font-size: 24px;
+      font-size: fluid(22px, 24px, $bp-tablet, $bp-desktop);
     }
 
     @include desktop {
@@ -198,15 +201,15 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
+    gap: fluid(20px, 24px, $bp-mobile-min, $bp-mobile);
     width: 100%;
     max-width: 100%;
     min-width: 0;
-    margin-top: 272px;
+    margin-top: fluid(180px, 272px, $bp-mobile-min, $bp-mobile);
 
     @include tablet {
       max-width: none;
-      gap: 80px;
+      gap: fluid(40px, 80px, $bp-tablet, $bp-desktop);
       margin-top: 0;
     }
 
@@ -221,12 +224,12 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: fluid(12px, 16px, $bp-mobile-min, $bp-mobile);
     width: 100%;
     min-width: 0;
 
     @include tablet {
-      gap: 40px;
+      gap: fluid(24px, 40px, $bp-tablet, $bp-desktop);
       max-width: 529px;
     }
 
@@ -237,22 +240,15 @@
   }
 
   &__title {
-    font-family: var(--font-family);
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 1.05;
+    @include landing-title($from: tablet, $lh: 1.05);
     letter-spacing: 0.04em;
-    color: var(--text-accent-dark);
     max-width: 100%;
-    margin: 0;
 
     @include tablet {
-      font-size: 48px;
       max-width: 529px;
     }
 
     @include desktop {
-      font-size: 48px;
       max-width: 529px;
     }
   }
@@ -260,14 +256,14 @@
   &__subtitle {
     font-family: var(--font-family);
     font-weight: 400;
-    font-size: 20px;
+    font-size: fluid(18px, 20px, $bp-mobile-min, $bp-mobile);
     line-height: 1.35;
     color: var(--text-accent-dark);
     max-width: 100%;
     margin: 0;
 
     @include tablet {
-      font-size: 32px;
+      font-size: fluid(24px, 32px, $bp-tablet, $bp-desktop);
       max-width: none;
     }
 
@@ -278,11 +274,12 @@
   }
 
   &__cta {
-    width: 227px;
+    width: fluid(200px, 227px, $bp-mobile-min, $bp-mobile);
     max-width: 100%;
     min-width: 0;
     min-height: 0;
-    padding: 12px 24px;
+    padding: fluid(10px, 12px, $bp-mobile-min, $bp-mobile)
+      fluid(20px, 24px, $bp-mobile-min, $bp-mobile);
     border-radius: 6px;
     background: var(--button-primary-default);
     border-color: var(--button-primary-default);
@@ -291,12 +288,21 @@
     font-weight: 700;
     line-height: 1.25;
     color: var(--text-button);
+    transition:
+      background-color var(--transition),
+      border-color var(--transition);
+
+    &:hover {
+      background: var(--button-primary-hover);
+      border-color: var(--button-primary-hover);
+      color: var(--text-button);
+    }
 
     @include tablet {
       width: auto;
       max-width: none;
       padding: 16px 36px;
-      font-size: 32px;
+      font-size: fluid(24px, 32px, $bp-tablet, $bp-desktop);
     }
 
     @include desktop {
@@ -307,19 +313,7 @@
     }
   }
 
-  &__ctaFull {
-    display: none;
-
-    @include tablet {
-      display: inline;
-    }
-  }
-
-  &__ctaShort {
-    @include tablet {
-      display: none;
-    }
-  }
+  @include cta-label-pair($from: tablet);
 
   &__socials {
     width: 100%;
