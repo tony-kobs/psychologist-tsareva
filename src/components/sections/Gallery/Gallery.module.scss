@@ -22,6 +22,8 @@
 
   &__title {
     @include landing-title($mb: 40px, $from: tablet);
+    width: 100%;
+    text-align: left;
   }
 
   &__row {

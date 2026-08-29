@@ -64,7 +64,7 @@
   $lh: 1.15,
   $mb: 0,
   $mb-lg: null,
-  $align: null,
+  $align: left,
   $color: var(--text-accent-dark)
 ) {
   margin: 0;
@@ -73,10 +73,7 @@
   font-weight: 700;
   line-height: $lh;
   color: $color;
-
-  @if $align != null {
-    text-align: $align;
-  }
+  text-align: $align;
 
   @if $from == none {
     font-size: $size-sm;

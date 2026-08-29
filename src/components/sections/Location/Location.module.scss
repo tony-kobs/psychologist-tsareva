@@ -76,6 +76,8 @@
 
   &__title {
     @include landing-title($from: desktop);
+    width: 100%;
+    text-align: left;
   }
 
   &__text {

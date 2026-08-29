@@ -52,7 +52,7 @@ alwaysApply: true
 - Desktop: pad 84, tags gap 80, **tags equal width** (`inline-grid` + `1fr`), градієнт 974px, листок `background-hero.png` 160×291 top ~180
 - Tablet 768–1439: `hero-photo-tablet-1x/2x`, градієнт 50%, листок знизу-ліворуч, tags gap 40, equal width
 - Mobile 393: `hero-photo-mobile-1x/2x`, pad 36, tags 143 / gap 20, title 32, CTA 227×69, `hero-background-mobile.png` знизу-праворуч
-- **Desktop titles:** усі секційні H2 по лівому краю (Groups / Certificates / Help directions — `text-align: left` ≥1440)
+- **Section titles:** `text-align: left` на всіх брейкпоінтах (mobile / tablet / desktop)
 
 ### Values
 - **Mobile (<768):** 1 кол; картка: іконка+title в ряд, текст знизу на всю ширину; bg `--card-bg-hover`; pad 16; gap 16

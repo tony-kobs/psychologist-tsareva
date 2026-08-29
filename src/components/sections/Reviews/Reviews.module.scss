@@ -10,6 +10,8 @@
 
   &__title {
     @include landing-title-fixed-48($mb: 40px);
+    width: 100%;
+    text-align: left;
   }
 
   &__row {

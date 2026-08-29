@@ -2,13 +2,11 @@
 
 .certs {
   &__title {
-    @include section-title;
-    text-align: center;
-    margin-bottom: 28px;
-
-    @include desktop {
-      text-align: left;
-    }
+    @include landing-title-fixed-48($mb: 28px);
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    text-align: left;
   }
 
   &__grid {
