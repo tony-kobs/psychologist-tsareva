@@ -9,26 +9,11 @@
   padding: 0;
   border: none;
   background: transparent;
-  color: var(--button-primary-default);
+  color: var(--swiper-arrow-default);
   cursor: pointer;
   transition:
     color var(--transition),
-    background-color var(--transition);
-
-  &:hover {
-    color: var(--text-button);
-  }
-
-  &:hover &__circle path {
-    fill: var(--button-primary-default);
-    stroke: var(--button-primary-default);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--text-accent-dark);
-    outline-offset: 2px;
-    border-radius: 50%;
-  }
+    opacity var(--transition);
 
   &__circle {
     display: block;
@@ -36,6 +21,8 @@
     height: 30px;
 
     path {
+      fill: transparent;
+      stroke: currentColor;
       transition:
         fill var(--transition),
         stroke var(--transition);
@@ -50,5 +37,32 @@
     height: 15px;
     transform: translate(-50%, -50%);
     pointer-events: none;
+  }
+
+  &:hover:not(:disabled),
+  &:focus-visible:not(:disabled),
+  &:active:not(:disabled) {
+    color: var(--text-button);
+    outline: none;
+  }
+
+  &:hover:not(:disabled) &__circle path,
+  &:focus-visible:not(:disabled) &__circle path,
+  &:active:not(:disabled) &__circle path {
+    fill: var(--swiper-arrow-hover-bg);
+    stroke: var(--swiper-arrow-hover-bg);
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    color: var(--swiper-arrow-disabled);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &:disabled &__circle path,
+  &[aria-disabled="true"] &__circle path {
+    fill: transparent;
+    stroke: currentColor;
   }
 }

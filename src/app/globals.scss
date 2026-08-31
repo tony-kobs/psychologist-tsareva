@@ -15,24 +15,28 @@
 :root {
   --text-button: #ffffff;
   --text-primary: #050505;
-  --text-accent-light: #c9785e;
+  --text-accent-light: #ae5d43;
   --text-accent-dark: #621c04;
-  --text-secondary: #686868;
+  --text-secondary: #474545;
 
-  --bg-dark-brown: #c9785e;
-  --bg-accent: #c9785e;
+  --bg-dark-brown: #9a492f;
+  --bg-accent: #9a492f;
   --bg-light: #fbf4ef;
   --bg-primary: #fefbf7;
   --form-bg: #fefbf7;
   --card-bg-hover: #fff7f4;
   --card-bg-tertiary: #fdf6f1;
 
-  --button-primary: #c8765b;
-  --button-primary-default: #c8765b;
-  --button-primary-hover: #d98970;
-  --button-secondary-border: #c8765b;
+  --button-primary: #ae5d43;
+  --button-primary-default: #ae5d43;
+  --button-primary-hover: #ea8462;
+  --button-secondary-border: #ae5d43;
   --button-disabled: #e2dddc;
   --input-border: #ce8066;
+  --swiper-arrow-default: #c8765b;
+  --swiper-arrow-hover-bg: #ea8462;
+  --swiper-arrow-disabled: #e2dddc;
+  --back-to-top-hover-gradient: linear-gradient(180deg, #ffc7b5 0%, #c9785e 100%);
   --input-border-error: #e05c5c;
   --input-bg: #ffffff;
   --error-text: #e05c5c;

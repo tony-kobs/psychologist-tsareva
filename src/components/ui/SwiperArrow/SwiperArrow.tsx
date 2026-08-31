@@ -6,6 +6,7 @@ type SwiperArrowProps = {
   className?: string;
   "aria-label": string;
   onClick?: () => void;
+  disabled?: boolean;
 };
 
 const CHEVRON = {
@@ -17,6 +18,7 @@ export function SwiperArrow({
   direction,
   className,
   onClick,
+  disabled = false,
   "aria-label": ariaLabel,
 }: SwiperArrowProps) {
   return (
@@ -25,6 +27,8 @@ export function SwiperArrow({
       className={clsx(styles.arrow, className)}
       aria-label={ariaLabel}
       onClick={onClick}
+      disabled={disabled}
+      aria-disabled={disabled}
     >
       <svg
         className={styles.arrow__circle}

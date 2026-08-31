@@ -27,10 +27,18 @@ export function BackToTop() {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
+        className={styles.backToTop__svg}
       >
+        <defs>
+          <linearGradient id="backToTopHover" x1="40" x2="40" y1="6.6665" y2="73.3332" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#FFC7B5" />
+            <stop offset="1" stopColor="#C9785E" />
+          </linearGradient>
+        </defs>
         <path
+          className={styles.backToTop__circle}
           d="M40.0001 73.3332C58.4096 73.3332 73.3334 58.4093 73.3334 39.9998C73.3334 21.5903 58.4096 6.6665 40.0001 6.6665C21.5906 6.6665 6.66675 21.5903 6.66675 39.9998C6.66675 58.4093 21.5906 73.3332 40.0001 73.3332Z"
-          fill="#C9785E"
+          fill="#9A492F"
           stroke="#FBF4EF"
           strokeWidth="2"
           strokeLinejoin="round"

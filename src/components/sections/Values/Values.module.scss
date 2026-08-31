@@ -53,8 +53,10 @@
       text-align: center;
     }
 
-    &:hover {
-      background-color: var(--card-bg-hover);
+    &:hover,
+    &:focus-within {
+      background-color: var(--card-bg-tertiary);
+      border-color: var(--input-border);
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(98, 28, 4, 0.08);
     }

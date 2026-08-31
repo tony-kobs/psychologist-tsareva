@@ -29,7 +29,7 @@ alwaysApply: true
 - Фон секції як body, якщо не сказано інакше: `background-color: var(--form-bg)`. Не чіпати `section--alt`, якщо макет бежевий як сторінка.
 - Спільні міксини (`src/styles/_mixins.scss`): `landing-title` (+ `$mb-lg`, `$color`), `landing-title-fixed-48`, `landing-cta`, `cta-label-pair`, `section-gradient-bg`, `decor-leaf`, `swiper-arrows-row`, `swiper-track`, `swiper-arrows-nav-order` — DRY без зміни візуалу.
 - Глобальні `img { max-width: 100%; height: auto }` ламають декор і іконки → на цих `img` ставити `max-width: none` і явну висоту.
-- **UI states (`components.jpg`):** primary hover `#d98970` / disabled `#e2dddc`; outline hover `--card-bg-hover` (peach); картки Values/Groups/Help/Reviews — hover peach + легкий lift; форма — focus, error (`*…`), success (check); SwiperArrow hover fill.
+- **UI states (`components.jpg`):** nav links — default Lato 400 / primary; hover+focus 700 / primary; active 700 + underline / accent-light. Cards hover+focus — `--card-bg-tertiary` + `--input-border`. Primary btn hover+focus+active `--button-primary-hover`; disabled `--button-disabled`. Swiper arrows default `#c8765b` stroke; hover/focus/active fill `#ea8462` + white chevron; disabled `#e2dddc`. BackToTop hover gradient `#ffc7b5→#c9785e`. Social icons scale 1.1 on hover.
 - **Motion polish (`feature/landing-polish`):** `motion` + `Reveal`/`Stagger` — scroll-reveal, hero choreography; макет/токени без змін; `prefers-reduced-motion`.
 
 ## Breakpoints
@@ -129,10 +129,10 @@ alwaysApply: true
 - **Map:** r 20; desk max-w 550 h 445; tablet 428×445; mobile 100% × ~300
 
 ### Footer
-- Фон `#c9785e` / `--bg-dark-brown`; текст `--text-button`
+- Фон `#9a492f` / `--bg-dark-brown`; текст `--text-button`
 - **Desktop:** 3 кол — `justify-content: space-between` (Категорії ближче до центру); tablet gap ~48px; mobile стек gap **40**, порядок Контакти → Графік → Категорії
 - **Titles:** 32 / 700 / `--font-family`
-- **Контакти:** gap 24; рядки 20px; іконки **48×48**; соц **40×40**, gap **64** (mobile space-between); Instagram = `topbar-instagram` (білий скругл. квадрат + `#c9785e`)
+- **Контакти:** gap 24; рядки 20px; іконки **48×48**; соц **40×40**, gap **64** (mobile space-between); Instagram = `topbar-instagram` (білий скругл. квадрат + `#ae5d43`)
 - **Категорії:** mb title→list 24; items 24 / Lato; перший **700**, інші 400; gap 8
 - **Графік:** clock **40×40**, gap 12; текст 24 Lato 400; лого 150×120 / ArtScript 48, mt 29, справа внизу (tablet+)
 - **Tagline:** mt 45, center, 20px

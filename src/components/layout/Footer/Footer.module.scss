@@ -1,7 +1,7 @@
 @use "../../../styles/mixins" as *;
 
 .footer {
-  background-color: #c9785e;
+  background-color: var(--bg-dark-brown);
   color: var(--text-button);
   padding-block: fluid(32px, 40px, $bp-mobile-min, $bp-mobile);
 

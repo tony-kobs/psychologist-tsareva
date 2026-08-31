@@ -12,13 +12,12 @@
     height: var(--icon-social);
     flex-shrink: 0;
     color: inherit;
-    transition:
-      transform var(--transition),
-      opacity var(--transition);
+    transition: transform var(--transition);
 
-    &:hover {
-      transform: translateY(-2px);
-      opacity: 0.9;
+    &:hover,
+    &:focus-visible {
+      transform: scale(1.1);
+      outline: none;
     }
   }
 
@@ -27,6 +26,7 @@
     width: var(--icon-social-glyph);
     height: var(--icon-social-glyph);
     flex-shrink: 0;
+    transition: transform var(--transition);
   }
 
   &--brand {
@@ -60,11 +60,6 @@
     .socials__link {
       width: 32px;
       height: 32px;
-
-      &:hover {
-        transform: none;
-        opacity: 0.8;
-      }
     }
 
     .socials__icon {
@@ -73,7 +68,7 @@
     }
   }
 
-  /* Footer socials: 40px icons, packed gap (Figma column space-between looked too sparse) */
+  /* Footer socials: 40px icons */
   &--light {
     gap: 24px;
     width: max-content;
@@ -84,11 +79,6 @@
     .socials__link {
       width: 40px;
       height: 40px;
-
-      &:hover {
-        transform: none;
-        opacity: 0.85;
-      }
     }
 
     .socials__icon {

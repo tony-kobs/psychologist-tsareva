@@ -90,8 +90,10 @@
       border-radius: 20px;
     }
 
-    &:hover {
-      background-color: var(--card-bg-hover);
+    @include interactive-card-hover;
+
+    &:hover,
+    &:focus-within {
       box-shadow: 0 4px 16px rgba(98, 28, 4, 0.1);
     }
   }

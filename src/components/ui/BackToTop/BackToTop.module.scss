@@ -44,6 +44,22 @@
     max-width: none;
   }
 
+  &__circle {
+    transition: fill var(--transition);
+  }
+
+  &:hover &__circle,
+  &:focus-visible &__circle,
+  &:active &__circle {
+    fill: url(#backToTopHover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--text-accent-dark);
+    outline-offset: 2px;
+    border-radius: 50%;
+  }
+
   &--visible {
     opacity: 1;
     pointer-events: auto;

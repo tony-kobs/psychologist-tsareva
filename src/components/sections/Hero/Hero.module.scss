@@ -176,7 +176,7 @@
       fluid(4px, 4px, $bp-mobile-min, $bp-mobile);
     border: none;
     border-radius: 6px;
-    background: linear-gradient(180deg, #ffc7b5 0%, #c9785e 100%);
+    background: linear-gradient(180deg, #ffc7b5 0%, #ae5d43 100%);
     color: var(--text-button);
     font-family: var(--second-family);
     font-size: fluid(18px, 20px, $bp-mobile-min, $bp-mobile);
@@ -298,10 +298,17 @@
       background-color var(--transition),
       border-color var(--transition);
 
-    &:hover {
+    &:hover,
+    &:focus-visible,
+    &:active {
       background: var(--button-primary-hover);
       border-color: var(--button-primary-hover);
       color: var(--text-button);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--text-accent-dark);
+      outline-offset: 2px;
     }
 
     @include tablet {

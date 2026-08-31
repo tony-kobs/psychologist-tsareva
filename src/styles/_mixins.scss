@@ -165,7 +165,9 @@
     background: var(--button-primary-default);
     color: var(--text-button);
 
-    &:hover:not(:disabled) {
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled),
+    &:active:not(:disabled) {
       background: var(--button-primary-hover);
       border-color: var(--button-primary-hover);
       color: var(--text-button);
@@ -351,4 +353,58 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/** Nav text links — default / hover+focus / active (components kit) */
+@mixin nav-link {
+  font-family: var(--second-family);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--text-primary);
+  text-decoration: none;
+  vertical-align: middle;
+  transition:
+    color var(--transition),
+    font-weight var(--transition),
+    text-decoration-color var(--transition);
+
+  &:hover,
+  &:focus-visible {
+    font-weight: 700;
+    color: var(--text-primary);
+    outline: none;
+  }
+
+  &:active,
+  &--active {
+    font-weight: 700;
+    color: var(--text-accent-light);
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-underline-offset: 0;
+    text-decoration-thickness: auto;
+    text-decoration-skip-ink: auto;
+  }
+}
+
+/** Values / Groups / Help / Reviews cards — hover + focus */
+@mixin interactive-card-hover {
+  &:hover,
+  &:focus-within {
+    background-color: var(--card-bg-tertiary);
+    border-color: var(--input-border);
+  }
+}
+
+/** Primary button hover / focus / active */
+@mixin button-primary-states {
+  &:hover:not(:disabled):not([aria-disabled="true"]),
+  &:focus-visible:not(:disabled):not([aria-disabled="true"]),
+  &:active:not(:disabled):not([aria-disabled="true"]) {
+    background-color: var(--button-primary-hover);
+    border-color: var(--button-primary-hover);
+    color: var(--text-button);
+  }
 }

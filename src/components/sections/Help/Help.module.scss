@@ -180,11 +180,7 @@
       background-color var(--transition),
       border-color var(--transition);
 
-    &:hover {
-      background: var(--button-primary-hover);
-      border-color: var(--button-primary-hover);
-      color: var(--text-button);
-    }
+    @include button-primary-states;
 
     @include tablet-lg {
       @include landing-cta($variant: filled, $fs: 32px, $fs-lg: 32px, $from: none);
@@ -253,8 +249,10 @@
       min-height: 157px;
     }
 
-    &:hover {
-      background-color: var(--card-bg-hover);
+    @include interactive-card-hover;
+
+    &:hover,
+    &:focus-within {
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(98, 28, 4, 0.08);
     }

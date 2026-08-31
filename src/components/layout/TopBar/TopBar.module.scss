@@ -76,7 +76,7 @@
     flex-shrink: 0;
     line-height: 0;
     background: transparent;
-    transition: opacity var(--transition);
+    transition: transform var(--transition);
 
     img {
       display: block;
@@ -86,8 +86,10 @@
       vertical-align: top;
     }
 
-    &:hover {
-      opacity: 0.85;
+    &:hover,
+    &:focus-visible {
+      transform: scale(1.1);
+      outline: none;
     }
   }
 }

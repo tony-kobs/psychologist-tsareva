@@ -312,7 +312,9 @@
       color: var(--text-button);
       cursor: pointer;
 
-      &:hover {
+      &:hover,
+      &:focus-visible,
+      &:active {
         background: var(--button-primary-hover);
         border-color: var(--button-primary-hover);
       }
