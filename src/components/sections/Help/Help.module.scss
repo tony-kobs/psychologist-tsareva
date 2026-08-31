@@ -234,10 +234,7 @@
     border: 1px solid var(--input-border);
     border-radius: 6px;
     background-color: var(--card-bg-tertiary);
-    transition:
-      background-color var(--transition),
-      transform var(--transition),
-      box-shadow var(--transition);
+    @include interactive-card-hover;
 
     @include tablet-lg {
       width: 100%;
@@ -248,8 +245,6 @@
     @include desktop {
       min-height: 157px;
     }
-
-    @include interactive-card-hover;
 
     &:hover,
     &:focus-within {

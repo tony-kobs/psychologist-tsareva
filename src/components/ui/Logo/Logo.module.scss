@@ -9,7 +9,9 @@
   font-size: fluid(34px, 40px, $bp-mobile-min, $bp-tablet);
   line-height: 1;
   color: var(--text-accent-light);
-  transition: opacity var(--transition);
+  transition:
+    opacity var(--transition),
+    font-size 0.35s ease;
   min-width: 0;
   flex-shrink: 0;
 
@@ -25,10 +27,27 @@
     font-size: 48px;
   }
 
+  &--compact {
+    font-size: fluid(28px, 32px, $bp-mobile-min, $bp-tablet);
+
+    @include desktop {
+      font-size: 36px;
+    }
+
+    .logo__line:last-child {
+      padding-left: fluid(28px, 40px, $bp-mobile-min, $bp-tablet);
+
+      @include desktop {
+        padding-left: 40px;
+      }
+    }
+  }
+
   &__line {
     display: block;
     height: 1em;
     line-height: 1;
+    transition: padding-left 0.35s ease;
   }
 
   &__line:last-child {

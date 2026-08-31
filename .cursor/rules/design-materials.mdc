@@ -29,7 +29,7 @@ alwaysApply: true
 - Фон секції як body, якщо не сказано інакше: `background-color: var(--form-bg)`. Не чіпати `section--alt`, якщо макет бежевий як сторінка.
 - Спільні міксини (`src/styles/_mixins.scss`): `landing-title` (+ `$mb-lg`, `$color`), `landing-title-fixed-48`, `landing-cta`, `cta-label-pair`, `section-gradient-bg`, `decor-leaf`, `swiper-arrows-row`, `swiper-track`, `swiper-arrows-nav-order` — DRY без зміни візуалу.
 - Глобальні `img { max-width: 100%; height: auto }` ламають декор і іконки → на цих `img` ставити `max-width: none` і явну висоту.
-- **UI states (`components.jpg`):** nav links — default Lato 400 / primary; hover+focus 700 / primary; active 700 + underline / accent-light. Cards hover+focus — `--card-bg-tertiary` + `--input-border`. Primary btn hover+focus+active `--button-primary-hover`; disabled `--button-disabled`. Swiper arrows default `#c8765b` stroke; hover/focus/active fill `#ea8462` + white chevron; disabled `#e2dddc`. BackToTop hover gradient `#ffc7b5→#c9785e`. Social icons scale 1.1 on hover.
+- **UI states (`components.jpg`):** nav links — default Lato 400 / primary; hover+focus 400 / accent-light (без bold); active accent-light + `::after` bar (scaleX 0→1, 0.35s); activeHref лише за кліком (default `#about`). Cards hover+focus — `--card-bg-tertiary` + `--input-border`. Primary btn hover+focus+active `--button-primary-hover`; disabled `--button-disabled`. Swiper arrows default `#c8765b` stroke; hover/focus/active fill `#ea8462` + white chevron; disabled `#e2dddc`. BackToTop hover gradient `#ffc7b5→#c9785e`. Social icons scale 1.1 on hover. Transitions: `var(--transition)` на color/bg/border/transform/shadow.
 - **Motion polish (`feature/landing-polish`):** `motion` + `Reveal`/`Stagger` — scroll-reveal, hero choreography; макет/токени без змін; `prefers-reduced-motion`.
 
 ## Breakpoints
@@ -49,9 +49,9 @@ alwaysApply: true
 ## Зроблено (pixel-pass)
 
 ### Hero
-- Desktop: pad 84, tags gap 80, **tags equal width** (`inline-grid` + `1fr`), градієнт 974px, листок `background-hero.png` 160×291 top ~180
-- Tablet 768–1439: `hero-photo-tablet-1x/2x`, градієнт 50%, листок знизу-ліворуч, tags gap 40, equal width
-- Mobile 393: `hero-photo-mobile-1x/2x`, pad 36, tags 143 / gap 20, title 32, CTA 227×69, `hero-background-mobile.png` знизу-праворуч
+- Desktop: pad 84, tags ArtScript 32 / `--text-primary`, sep icon 40×40 gap 16 (text—icon—text), градієнт 974px, листок `background-hero.png` 160×291 top ~180
+- Tablet 768–1439: `hero-photo-tablet-1x/2x`, градієнт 50%, листок знизу-ліворуч, tags як desktop (ArtScript + icon 40, gap 16)
+- Mobile 393: `hero-photo-mobile-1x/2x`, pad 36, tags ArtScript fluid→32 / gap 16 wrap, title 32, CTA 227×69, `hero-background-mobile.png` знизу-праворуч
 - **Section titles:** `text-align: left` на всіх брейкпоінтах (mobile / tablet / desktop)
 
 ### Values
@@ -91,8 +91,8 @@ alwaysApply: true
 - Фон `--form-bg`
 - **Title:** 48px / 700 / ls 0.04em / `--text-accent-dark`, mb 40px
 - **Card:** border `--input-border`, r 16 (desk 20), pad 12 (desk 16), **без height** — stretch; shadow `0 0 2px 0 #f75555`
-  - **gap:** tablet `spaceBetween` 16; desktop 24
-  - **slide width:** 768→1024 fluid 220→250; 1024→1440 fluid 250→321 (на 1024 три картки + стрілки влізають)
+ - **gap:** tablet `spaceBetween` 16; desktop 24; стрілки↔картки 16px рівні (трек = 3 слайди, не `flex:1`)
+ - **slide width:** 768→1024 fluid 220→250; 1024→1440 fluid 250→321 (на 1024 три картки + стрілки влізають)
   - mobile: max-width 345, 1 слайд
 - **Avatar:** tablet 52 у wrap 64; desk 60 у wrap 80
 - **H3:** tablet 16 / desk 20; **Text:** tablet 15 / desk 20; **Stars:** tablet 18 / desk 24
@@ -139,7 +139,7 @@ alwaysApply: true
 - **BackToTop:** SVG 80×80 fixed
 
 ### Інше вже чіпали раніше
-- Header/Menu: tablet = desktop nav
+- Header/Menu: tablet = desktop nav; scroll → compact + glass (`backdrop-filter`, pad 15→8, logo/nav трохи менші)
 - Footer: 3 колонки на tablet
 - Location: tablet-адаптивна мапа
 - Типографіка: `--font-family` / розміри з макета, не мішати body/heading без спеку

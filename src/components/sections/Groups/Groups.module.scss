@@ -55,10 +55,8 @@
     border-radius: 6px;
     background-color: transparent;
     text-align: center;
-    transition:
-      background-color var(--transition),
-      transform var(--transition),
-      box-shadow var(--transition);
+    @include interactive-card-hover;
+    @include card-elevation;
 
     @media (min-width: #{$bp-mobile}) {
       max-width: fluid(345px, 428px, $bp-mobile, $bp-tablet-lg);
@@ -70,12 +68,9 @@
       height: 100%;
     }
 
-    @include interactive-card-hover;
-
     &:hover,
     &:focus-within {
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(98, 28, 4, 0.08);
     }
   }
 

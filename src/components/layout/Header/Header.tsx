@@ -1,14 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import clsx from "clsx";
 import { Logo } from "@/components/ui/Logo/Logo";
 import { TopBar } from "@/components/layout/TopBar/TopBar";
 import { MOBILE_NAV_LINKS, NAV_LINKS } from "@/constants/content";
 import styles from "./Header.module.scss";
 
+const DEFAULT_ACTIVE = NAV_LINKS[0].href;
+
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState<string>(DEFAULT_ACTIVE);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     document.body.classList.toggle("is-menu-open", open);
@@ -23,23 +27,38 @@ export function Header() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const close = () => setOpen(false);
 
+  const onNavClick = useCallback((href: string) => {
+    setActiveHref(href);
+  }, []);
+
   return (
-    <header className={styles.header}>
+    <header
+      className={clsx(styles.header, scrolled && styles["header--scrolled"])}
+    >
       <div className={`container ${styles.header__inner}`}>
-        <Logo />
+        <Logo compact={scrolled} />
 
         <nav className={styles.header__nav} aria-label="Основна навігація">
           <ul className={styles.header__list}>
-            {NAV_LINKS.map((link, index) => (
+            {NAV_LINKS.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
                   className={clsx(
                     styles.header__link,
-                    index === 0 && styles["header__link--active"],
+                    activeHref === link.href && styles["header__link--active"],
                   )}
+                  aria-current={activeHref === link.href ? "true" : undefined}
+                  onClick={() => onNavClick(link.href)}
                 >
                   {link.label}
                 </a>
@@ -84,15 +103,19 @@ export function Header() {
 
         <nav className={styles.menu__nav} aria-label="Мобільна навігація">
           <ul className={styles.menu__list}>
-            {MOBILE_NAV_LINKS.map((link, index) => (
+            {MOBILE_NAV_LINKS.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
                   className={clsx(
                     styles.menu__link,
-                    index === 0 && styles["menu__link--active"],
+                    activeHref === link.href && styles["menu__link--active"],
                   )}
-                  onClick={close}
+                  aria-current={activeHref === link.href ? "true" : undefined}
+                  onClick={() => {
+                    onNavClick(link.href);
+                    close();
+                  }}
                 >
                   <span>{link.label}</span>
                   <img

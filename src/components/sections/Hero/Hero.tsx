@@ -36,11 +36,28 @@ export function Hero() {
 
       <div className={`container ${styles.hero__content}`}>
         <Reveal as="ul" className={styles.hero__tags} inView={false} delay={0.05} y={16}>
-          {HERO.tags.map((tag) => (
-            <li key={tag} className={styles.hero__tag}>
-              {tag}
-            </li>
-          ))}
+          {HERO.tags.flatMap((tag, index) => {
+            const nodes = [];
+            if (index > 0) {
+              nodes.push(
+                <li key={`sep-${tag}`} className={styles.hero__tagSep} aria-hidden="true">
+                  <img
+                    className={styles.hero__tagIcon}
+                    src="/images/hero-tag-icon.svg"
+                    alt=""
+                    width={40}
+                    height={40}
+                  />
+                </li>,
+              );
+            }
+            nodes.push(
+              <li key={tag} className={styles.hero__tag}>
+                {tag}
+              </li>,
+            );
+            return nodes;
+          })}
         </Reveal>
 
         <div className={styles.hero__bottom}>

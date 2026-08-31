@@ -7,6 +7,29 @@
   background-color: var(--bg-primary);
   border-bottom: 1px solid rgba(206, 128, 102, 0.18);
   padding-block: 15px;
+  transition:
+    padding-block 0.35s ease,
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    backdrop-filter 0.35s ease,
+    box-shadow 0.35s ease;
+
+  &--scrolled {
+    padding-block: 8px;
+    background-color: rgba(254, 251, 247, 0.72);
+    border-bottom-color: rgba(206, 128, 102, 0.12);
+    backdrop-filter: blur(16px) saturate(1.2);
+    -webkit-backdrop-filter: blur(16px) saturate(1.2);
+    box-shadow: 0 4px 24px rgba(98, 28, 4, 0.06);
+
+    .header__list {
+      gap: 40px;
+    }
+
+    .header__link {
+      font-size: 20px;
+    }
+  }
 
   &__inner {
     display: flex;
@@ -30,11 +53,15 @@
     align-items: center;
     flex-wrap: nowrap;
     gap: 54px;
+    transition: gap 0.35s ease;
   }
 
   &__link {
-    @include nav-link;
+    @include nav-link($active-bar: true);
     white-space: nowrap;
+    transition:
+      color var(--transition),
+      font-size 0.35s ease;
   }
 }
 
@@ -155,9 +182,16 @@
       bottom: 0;
       height: 1px;
       background-color: rgba(201, 120, 94, 0.45);
+      transform: scaleX(1);
+      transform-origin: center;
+      transition:
+        background-color var(--transition),
+        height var(--transition),
+        transform 0.35s ease;
     }
 
     &--active::after {
+      height: 2px;
       background-color: var(--text-accent-light);
     }
   }

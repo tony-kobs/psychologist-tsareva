@@ -245,6 +245,12 @@ li {
   cursor: default;
 }
 
+/* Keep pointer over label text inside links / buttons */
+a *,
+button * {
+  cursor: inherit;
+}
+
 ul,
 ol {
   margin: 0;

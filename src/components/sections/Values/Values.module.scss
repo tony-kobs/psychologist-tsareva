@@ -40,10 +40,8 @@
     border-radius: 6px;
     background-color: var(--card-bg-hover);
     text-align: left;
-    transition:
-      background-color var(--transition),
-      transform var(--transition),
-      box-shadow var(--transition);
+    @include interactive-card-hover;
+    @include card-elevation;
 
     @include tablet {
       align-items: center;
@@ -55,10 +53,7 @@
 
     &:hover,
     &:focus-within {
-      background-color: var(--card-bg-tertiary);
-      border-color: var(--input-border);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(98, 28, 4, 0.08);
     }
   }
 

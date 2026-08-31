@@ -15,17 +15,37 @@
   }
 
   &__row {
-    @include swiper-arrows-row($mobile-gap-y: 40px, $mobile-gap-x: 16px, $side-gap: 12px);
+    @include swiper-arrows-row($mobile-gap-y: 40px, $mobile-gap-x: 16px, $side-gap: 16px);
     overflow: visible;
 
-    @include desktop {
-      gap: 16px;
+    @include tablet {
+      justify-content: center;
     }
   }
 
   &__swiper {
     @include swiper-track;
     overflow: visible;
+
+    /* Не розтягувати трек — інакше зліва gap 16px, справа «порожнеча» до стрілки */
+    @include tablet {
+      flex: 0 1 auto;
+      width: min(
+        calc(100% - 62px),
+        calc(3 * #{fluid(220px, 250px, $bp-tablet, $bp-tablet-lg)} + 2 * 16px)
+      );
+    }
+
+    @include tablet-lg {
+      width: min(
+        calc(100% - 62px),
+        calc(3 * #{fluid(250px, 321px, $bp-tablet-lg, $bp-desktop)} + 2 * 16px)
+      );
+    }
+
+    @include desktop {
+      width: min(calc(100% - 62px), calc(3 * 321px + 2 * 24px));
+    }
 
     :global(.swiper-wrapper) {
       align-items: stretch;
@@ -74,9 +94,7 @@
     border-radius: 16px;
     background-color: #ffffff;
     box-shadow: 0 0 2px 0 #f75555;
-    transition:
-      background-color var(--transition),
-      box-shadow var(--transition);
+    @include interactive-card-hover;
 
     @include tablet {
       max-width: none;
@@ -89,8 +107,6 @@
       padding: 16px;
       border-radius: 20px;
     }
-
-    @include interactive-card-hover;
 
     &:hover,
     &:focus-within {
