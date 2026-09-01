@@ -51,7 +51,7 @@ alwaysApply: true
 ### Hero
 - Desktop: pad 84, tags ArtScript 32 / `--text-primary`, sep icon 40×40 gap 16 (text—icon—text), градієнт 974px, листок `background-hero.png` 160×291 top ~180
 - Tablet 768–1439: `hero-photo-tablet-1x/2x`, градієнт 50%, листок знизу-ліворуч, tags як desktop (ArtScript + icon 40, gap 16)
-- Mobile 393: `hero-photo-mobile-1x/2x`, pad 36, tags ArtScript fluid→32 / gap 16 wrap, title 32, CTA 227×69, `hero-background-mobile.png` знизу-праворуч
+- Mobile 393: `hero-photo-mobile-1x/2x`, pad 36, tags ArtScript fluid→32 — колонка, **left align**, gap 16, без іконок; title 32, CTA 227×69, `hero-background-mobile.png` знизу-праворуч
 - **Section titles:** `text-align: left` на всіх брейкпоінтах (mobile / tablet / desktop)
 
 ### Values
